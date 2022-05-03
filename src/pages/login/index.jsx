@@ -3,6 +3,7 @@ import {useState} from 'react'
 
 import {AiOutlineEye} from 'react-icons/ai'
 import { AiOutlineEyeInvisible } from 'react-icons/ai'
+import img from '../../assets/image/car.svg';
 
 export const Login = () => {
 
@@ -21,7 +22,8 @@ export const Login = () => {
         <C.ContainerLogin>
             <div className='right'>
                 <div className='content-right'>
-
+                    <img className='img-car' src={img}/>
+                    <h2>Tijuca Cars</h2>
                 </div>
             </div>
             <div className='left'>

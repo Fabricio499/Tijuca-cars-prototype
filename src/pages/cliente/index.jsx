@@ -4,6 +4,7 @@ import {Navbar} from '../../Components/navbar'
 import { CardCliente } from '../../Components/CardCliente'
 import { ButtonSubmit } from '../../Components/buttonSubmit'
 
+
 export const Cliente = () => {
     return (
         <C.ContainerCliente>
