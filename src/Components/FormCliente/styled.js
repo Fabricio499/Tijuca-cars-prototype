@@ -4,15 +4,8 @@ export const ContainerModalCliente = styled.div`
     background: #0D47A1;
     height: 550px;
     width: 600px;
+    margin-top: 60px;
 
-   
-    h1 {
-        text-align: center;
-        color: #f6f6f6;
-        color: #F9A826;
-        margin-top: 30px;
-        margin-left: 110px;
-    }
 
     .form-model-cliente{
         display: flex;

@@ -2,9 +2,12 @@ import styled from 'styled-components'
 
 export const ContainerCliente = styled.div`
    
+   font-family: 'Roboto', sans-serif;
+
     .content-cliente {
         width: 80%;
         margin:auto;
+        
     }
     
     .cards {
@@ -23,7 +26,7 @@ export const ContainerCliente = styled.div`
         span {
             color: #f6f6f6;
             font-size: 2.5rem;
-            font-family: roboto;
+            font-family: 'Roboto', sans-serif;
         }
     }
 `
