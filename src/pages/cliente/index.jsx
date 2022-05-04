@@ -4,7 +4,7 @@ import {Navbar} from '../../Components/navbar'
 import { CardCliente } from '../../Components/CardCliente'
 import { ButtonSubmit } from '../../Components/buttonSubmit'
 import { FormModalCliente } from '../../Components/FormModalCliente'
-import Modal from 'react-modal/lib/components/Modal'
+// import Modal from 'react-modal/lib/components/Modal'
 
 
 
