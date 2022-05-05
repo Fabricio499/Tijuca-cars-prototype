@@ -13,11 +13,11 @@ export const FormCliente = () => {
 
             <div className='campo-input'>
                 <label>Data Retirada</label>
-                <input type="date"/>
+                <input type="datetime-local"/>
             </div>
             <div className='campo-input'> 
                 <label>Data Entrega</label>
-                <input type="date"/>
+                <input type="datetime-local"/>
             </div>
             <div className='price-div'>
                 <p>Preço:</p>

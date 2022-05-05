@@ -9,7 +9,7 @@ export const ModalNovoCliente = ({closeModal}) => {
             <Conteiner>
             <Header>
                 <h1>Novo Cliente</h1>
-                <button onClick={closeModal} >
+                <button onClick={() => closeModal()} >
                     <CloseIcon />
                 </button>
             </Header>

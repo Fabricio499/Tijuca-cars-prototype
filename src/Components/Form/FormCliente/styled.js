@@ -36,8 +36,8 @@ export const ContainerModalCliente = styled.div`
                     color: #F9A826;
                 }
             }
-            input[type="date"]::-webkit-inner-spin-button,
-            input[type="date"]::-webkit-calendar-picker-indicator {
+            input[type="datetime-local"]::-webkit-inner-spin-button,
+            input[type="datetime-local"]::-webkit-calendar-picker-indicator {
                 filter: invert(1);
                 cursor: pointer;
             }

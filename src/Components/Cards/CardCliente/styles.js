@@ -8,6 +8,7 @@ export const CardContainer = styled.div`
     color: #f6f6f6;
     font-family: roboto;
     background: #0D47A1;
+    gap: 0.8rem;
 
     border-radius: 15px;
 
@@ -15,14 +16,25 @@ export const CardContainer = styled.div`
     transition: all ease-in .4s;
 
     h2 {
+        font-size: 1rem;
+        color: #F9A826;
         margin-top: 10%;
         margin-left: 5%;
         text-align: center;
+        margin-bottom: 0.5rem;
     }
-    p {
-        margin: 3.5% 0;
-        margin-left: 5%;
+    .single-info-card {
+        margin: 0 0.4rem;
+        font-size: 0.9rem;
+        display: flex;
+        justify-content: space-between;
+
+        .info-span {
+            color: #F9A826;
+        }
     }
+
+
 
     &:hover {
         transition: all ease-in .4s;
