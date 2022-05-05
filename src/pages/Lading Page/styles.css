@@ -1,0 +1,110 @@
+*{
+    margin: 0;
+}
+
+.fundo-branco{
+    background-color: #f6f6f6;
+    height: 27rem;
+    box-shadow: rgba(50, 50, 93, 0.7) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.img-logo{
+    height: 6rem;
+    /* margin: 3% 10%; */
+}
+
+.div-menor{
+    display: flex;
+    /* border: 1px solid red; */
+    width: 80%;
+    margin: 0% 7%;
+    /* margin: auto; */
+    justify-content: space-between;
+    align-items: center;
+}
+
+.box-cabecalho{
+    right: 2rem;
+    display: flex;
+    justify-content: space-between;
+    padding: 2% 0%;
+}
+
+.titulo-logo{
+    font-family: poppins;
+    /* margin: 3% 10%; */
+    color: #1E3F7F;
+    font-size: 40px;
+}
+
+.box-meio{
+    margin: 2% 5%;
+    
+}
+
+.paragrafo-2{
+    /* justify-content: space-between; */
+    display: flex;
+    font-family: poppins;
+    align-items: center;
+    
+    /* border: 1px solid pink; */
+}
+
+.div-menor-meio{
+    /* display: flex; */
+    width: 95%;
+    /* border: 1px solid red; */
+}
+
+.letra{
+    font-size: 2rem;
+    margin: 0% 4%;
+    font-weight: 300;
+}
+
+/* .ponto-1{
+    background-color: #F9A826;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+} */
+
+.ponto-2{
+    background-color: #F9A826;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+
+}
+
+.fundo{
+    letter-spacing: 0%;
+    justify-content: center;
+    /* margin: auto; */
+    align-items: center;
+}
+button:hover{
+    background-color: #527f1e;
+}
+.btn-logo{
+    background-color: #1E3F7F;
+    height: 4rem;
+    font-size: 2rem;
+    border: none;
+    /* box-shadow: ; */
+    color: #f6f6f6;
+    margin: 3% 4%;
+}
+.login-branco{
+    width: 18%;
+    height: 100%;
+   color: #f6f6f6;
+    font-size: 2rem;
+    /* border: 1px solid red; */
+    position: absolute;
+    bottom: -76%;
+    left: 3.4%;
+    
+}
+
