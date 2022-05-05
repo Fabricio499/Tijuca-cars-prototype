@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 export const ContainerModalCliente = styled.div`
     background: #0D47A1;
-    height: 550px;
     width: 600px;
     margin-top: 60px;
 
