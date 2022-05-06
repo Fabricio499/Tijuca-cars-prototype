@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export const ContainerCliente = styled.div`
    
    font-family: 'Roboto', sans-serif;
+   color: #f6f6f6;
 
     .content-cliente {
         width: 80%;
@@ -29,4 +30,9 @@ export const ContainerCliente = styled.div`
             font-family: 'Roboto', sans-serif;
         }
     }
+   
+       
+    
+
+   
 `

@@ -21,7 +21,7 @@ justify-content: space-between;
 align-items: center;
 
 width: 100%;
-height: 40px;
+height: 20px;
 
 background-color: transparent;
 padding: 0;

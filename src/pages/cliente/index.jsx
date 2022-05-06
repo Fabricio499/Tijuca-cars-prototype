@@ -1,12 +1,10 @@
 import {React, useState} from 'react'
 import * as C from './styles'
-import {Navbar} from '../../Components/navbar'
-import { CardCliente } from '../../Components/CardCliente'
-import { ButtonSubmit } from '../../Components/buttonSubmit'
-import { FormModalCliente } from '../../Components/FormModalCliente'
-// import Modal from 'react-modal/lib/components/Modal'
-
-
+import {Navbar} from '../../Components/Navbar'
+import { CardCliente } from '../../Components/Cards/CardCliente'
+import { ButtonSubmit } from '../../Components/Form/buttonSubmit'
+import { FormModalCliente } from '../../Components/Form/FormModalCliente'
+import Modal from 'react-modal/lib/components/Modal'
 
 
 export const Cliente = () => {

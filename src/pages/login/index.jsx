@@ -18,6 +18,10 @@ export const Login = () => {
 
     }
 
+    const handleLogin = () => {
+        window.location.href="/cliente"
+    }
+
     return (
         <C.ContainerLogin>
             <div className='right'>
@@ -34,7 +38,7 @@ export const Login = () => {
                         <input type="email" className='input-login' name="" />
                         <label>Senha</label>
                         <input type={view === false ? 'password' : 'text'} className='input-login' name="" id="" />
-                        <div onClick={handleVisiblePassword} className="iconView">
+                        <div onClick={handleVisiblePassword}  className="iconView">
                         {
                         view
                         ?
@@ -45,8 +49,8 @@ export const Login = () => {
                         </div>
                         
                     </div>
-                    <button>LOGAR</button>
                 </div>
+                    <button className='btn-enviar' onClick={handleLogin}>LOGAR</button>
             </div>
         </C.ContainerLogin>
     )

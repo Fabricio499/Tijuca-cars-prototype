@@ -25,14 +25,16 @@ export const ContainerLogin = styled.div`
             
 
             .img-car {
+                min-height: 3rem;
+                max-width: 90%;
                 width: 450px;
-                margin-bottom: 3rem;
+                margin-bottom: 10%;
             }
 
             h2 {    
-                margin: 3rem 0;
+                margin: 0 auto;
                 color: white;
-                font-size: 60px;
+                font-size: calc(400% + -4vmin);
                 font-family: 'Goldman', cursive;
                 letter-spacing: 0.25rem;
                 
@@ -53,11 +55,11 @@ export const ContainerLogin = styled.div`
             display: flex;
             flex-direction: column;
             align-items: center;
-            height: 60%;
+            height: 80%;
             width: 80%;
 
             h2 {
-                /* margin: 0; */
+                margin: 4rem 0 2rem 0;
                 color: #fff;
                 font-size: 3.5rem;
             }
@@ -92,9 +94,28 @@ export const ContainerLogin = styled.div`
                     }
                 }
             }
+        }
+        .iconView {
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            color: #000;
+            font-size: 19px;
+            color: #f6f6f6;
+            transition: all ease .3s;
+            width: 82%;
+            margin: -2.5rem 0;
+            width: 1rem;
+            margin-left: 78%;
 
-            button {
-                margin-top: 2rem;
+            &:hover {
+                transition: all ease .3s;
+                color: #F9A826;
+            }
+        }
+    }
+
+    .btn-enviar {
                 padding: 10px 25px;
                 background: none;
                 border: 0;
@@ -112,14 +133,5 @@ export const ContainerLogin = styled.div`
                     background: #F9A826;
                     color: #000;
                 }
-            }
-        }
-        .iconView {
-            position: fixed;
-            left: 90%;
-            top: 62.5%;
-            color: #000;
-            font-size: 19px;
-        }
     }
 `

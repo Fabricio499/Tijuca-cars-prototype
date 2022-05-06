@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const CardContainer = styled.div`
+export const ContainerCardCarros = styled.div`
     display: flex;
     flex-direction: column;
     width: 250px;
@@ -14,18 +14,17 @@ export const CardContainer = styled.div`
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
     transition: all ease-in .4s;
 
-    h2 {
-        margin-top: 10%;
-        margin-left: 5%;
+    header {
+        padding: 1rem;
         text-align: center;
     }
-    p {
-        margin: 3.5% 0;
-        margin-left: 5%;
-    }
-
-    &:hover {
-        transition: all ease-in .4s;
-        box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    .info-car {
+        
+        .single-infoCar {
+            margin: 0 1rem;
+            justify-content: space-between;
+            display: flex;
+            margin-bottom: 1rem;
+        }
     }
 `
