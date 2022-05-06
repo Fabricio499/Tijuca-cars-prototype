@@ -6,7 +6,9 @@ import {
   Link
 } from "react-router-dom";
 
-import Routes from './Routes/routes'
+import { AdminPage } from './pages/AdminPage'
+import {Login} from './pages/login/index'
+import {Cliente} from './pages/cliente'
 
 export const App = () => {
   
