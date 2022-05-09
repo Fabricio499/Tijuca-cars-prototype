@@ -4,10 +4,22 @@ import { ButtonSubmit } from '../../Components/Form/buttonSubmit'
 import { CardCliente } from '../../Components/Cards/CardCliente/index.jsx'
 import { CardAlguelAdm } from '../../Components/Cards/CardAluguelAdm'
 import { CardCarros } from '../../Components/Cards/CardCarros'
+import Api from '../../services/api'
+import { useEffect } from 'react'
 
 
 export const AdminPage = () => {
-    
+
+    useEffect(()=>{
+        // Api.post('carros/cadastro').then(r=>console.log(r)).catch(r=>console.log(r))
+        const token = localStorage.getItem('Token')
+        if(token){
+            console.log(token);
+        }else{
+            console.log('dromedário')
+        }
+    }, [])
+
     return (
         <C.ContainerAdminPage>
             <Navbar />

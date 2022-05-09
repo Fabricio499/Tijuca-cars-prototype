@@ -6,16 +6,16 @@ import {
     Redirect
 } from 'react-router-dom'
 
-
+import { verificaToken } from '../controller/verificarToken'
 import { Login } from '../pages/login'
 import { AdminPage } from '../pages/AdminPage'
 import {Cliente} from '../pages/cliente'
 
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
+ const PrivateRoute = ({ component: Component, ...rest }) => {
     return (
-        <Route {...rest} render={props => (
-            LoginCliente() ? (
+         <Route {...rest} render={props => (
+            verificaToken() ? (
                 <Component {...props} />
         ) : (
             <Redirect to={{pathname: '/', state: {from: props.location}}} />
@@ -24,15 +24,15 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     )
 }
 
-const Routes = () => { 
+export const Routes = () => { 
     return (
         <BrowserRouter>
             <Switch>
-                <Route path='/' component={Login} />
+                <Route exact path='/' component={Login} />
                 <PrivateRoute path='/cliente' component={Cliente} />
+                <PrivateRoute path='/admin' component={AdminPage} />
+
             </Switch>
         </BrowserRouter>
     )
 }
-
-export default Routes;

@@ -1,10 +1,11 @@
-import {React, useState} from 'react'
+import {React, useEffect, useState} from 'react'
 import * as C from './styles'
 import {Navbar} from '../../Components/Navbar'
 import { CardCliente } from '../../Components/Cards/CardCliente'
 import { ButtonSubmit } from '../../Components/Form/buttonSubmit'
 import { FormModalCliente } from '../../Components/Form/FormModalCliente'
 import Modal from 'react-modal/lib/components/Modal'
+import Api from '../../services/api'
 
 
 export const Cliente = () => {
@@ -19,6 +20,9 @@ export const Cliente = () => {
         setOpenModal(true)
     }
     
+    useEffect(()=>{
+        Api.get('clientes/').then(r=>console.log(r)).catch(err=>console.log(err))
+    },[])
    
     return (
         <C.ContainerCliente>

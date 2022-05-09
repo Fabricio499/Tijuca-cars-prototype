@@ -5,14 +5,11 @@ const Api = axios.create({
 });
 
 Api.interceptors.request.use(async(config)=>{
-    try {
-        const token = localStorage.getItem('token');
-        if(token) {
-            config.headers.Authorization = `Bearer ${token}`
-        }
-        return config;
-    } catch(err) {
-        console.log(err)
+    const token = localStorage.getItem('Token')
+    if(token){
+        config.headers.Authorization = `Bearer ${token}`;
     }
+
+    return config;
 })
 export default Api;

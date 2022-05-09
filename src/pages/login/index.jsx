@@ -30,13 +30,17 @@ export const Login = () => {
 
     async function teste(){
         const response = await LoginCliente(email, senha)
-        console.log(response.data)
+        console.log("response aqui", response.response)
         const token = response.data.token
         const adm = response.data.adm
         localStorage.setItem('Token', token)
         
         if(response.data.token) {
+            window.location.href='/cliente'
             return true
+        } else {
+            console.log(response)
+            alert(response)
         }
          
     }
