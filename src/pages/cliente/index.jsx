@@ -19,10 +19,6 @@ export const Cliente = () => {
     function abriModal(){
         setOpenModal(true)
     }
-    
-    useEffect(()=>{
-        Api.get('clientes/').then(r=>console.log(r)).catch(err=>console.log(err))
-    },[])
    
     return (
         <C.ContainerCliente>

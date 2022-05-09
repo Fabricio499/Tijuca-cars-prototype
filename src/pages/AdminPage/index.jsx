@@ -5,20 +5,22 @@ import { CardCliente } from '../../Components/Cards/CardCliente/index.jsx'
 import { CardAlguelAdm } from '../../Components/Cards/CardAluguelAdm'
 import { CardCarros } from '../../Components/Cards/CardCarros'
 import Api from '../../services/api'
-import { useEffect } from 'react'
+import React,{ useEffect, useState } from 'react'
 
 
 export const AdminPage = () => {
 
+    const [cars, setCars] = useState([])
+
     useEffect(()=>{
-        // Api.post('carros/cadastro').then(r=>console.log(r)).catch(r=>console.log(r))
-        const token = localStorage.getItem('Token')
-        if(token){
-            console.log(token);
-        }else{
-            console.log('dromedário')
+        async function dataCar(){
+            const response = await Api.get('carros/carros')
+            setCars(response.data.response)
         }
+        dataCar();
     }, [])
+
+
 
     return (
         <C.ContainerAdminPage>
@@ -40,13 +42,20 @@ export const AdminPage = () => {
             <div className='all-cars'>
                 <h2>Todos os Carros</h2>
                 <div className='card-div'>
-                    <CardCarros />
-                    <CardCarros />
-                    <CardCarros />
-                    <CardCarros />
-                    <CardCarros />
-                    <CardCarros />
-                    <CardCarros />
+                    {cars.length > 0 &&
+                        cars.map((cars)=>(
+                            <CardCarros
+                                modelo={cars.modelo}
+                                ano={cars.ano}
+                                cor={cars.cor}
+                                placa={cars.placa}
+                                status={cars.status}
+                                valor={cars.valorDiaAluguel}
+                            />
+
+                        ))
+                    }
+                    
                 </div>
             </div>
         </C.ContainerAdminPage>

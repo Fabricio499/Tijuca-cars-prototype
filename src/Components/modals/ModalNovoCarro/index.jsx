@@ -14,7 +14,9 @@ export const ModalNovoCarro = ({closeModal}) => {
                     <CloseIcon  />
                 </button>
             </Header>
-            <FormNovoCarro/>
+            <FormNovoCarro 
+                closeModalCarro ={closeModal}
+            />
             </Conteiner>
             </Overlay>
     )

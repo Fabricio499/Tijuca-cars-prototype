@@ -33,6 +33,7 @@ const Sidebar = ({ active }) => {
 
     const history = useHistory()
     const handleLogout = () => {
+        localStorage.removeItem('Token')
         window.location.href="/"
     }
 

@@ -1,28 +1,34 @@
 import * as C from './styles'
 
-export const CardCarros = () => {
+import Api from '../../../services/api'
+import { useState, useEffect } from 'react'
 
+export const CardCarros = ({modelo, ano, cor, placa, status, valor}) => {
+
+   
+    
+    
     return (
         <C.ContainerCardCarros>
             <header>
-                <span>Modelo</span>
+                <span>{modelo}</span>
             </header>
             <div className='info-car'>
                 <div className='single-infoCar'>
                     <span>Placa:</span>
-                    <p>NOME</p>
+                    <p>{modelo}</p>
                 </div>
                 <div className='single-infoCar'>
                     <span>Cor:</span>
-                    <p>NOME</p>
+                    <p>{cor}</p>
                 </div>
                 <div className='single-infoCar'>
                     <span>Ano:</span>
-                    <p>NOME</p>
+                    <p>{ano}</p>
                 </div>
                 <div className='single-infoCar'>
                     <span>Status:</span>
-                    <p>Disponivel</p>
+                    <p>{status}</p>
                 </div>
             </div>
         </C.ContainerCardCarros>

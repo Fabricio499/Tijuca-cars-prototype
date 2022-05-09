@@ -3,7 +3,24 @@ import { ButtonSubmit } from '../buttonSubmit'
 import * as C from './styles'
 import Api from '../../../services/api'
 
-export const FormNovoCarro = () => {
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
+
+
+export const FormNovoCarro = ({closeModalCarro}) => {
+    
+    const [error, setError] = useState(false)
+
+    const notify = () => toast.success('Carro adicionado com sucesso!', {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        });;   
+           
 
     const [modelo, setModelo] = useState('')
     const [placa, setPlaca] = useState('')
@@ -21,8 +38,14 @@ export const FormNovoCarro = () => {
             valorDiaAluguel: valor,
             status: status,
         })
-        alert('Carro adcionado com sucesso!')
+        if(response){
+            notify();
+        } else {
+
+        }
     }
+
+    
 
 
     return (
@@ -50,7 +73,22 @@ export const FormNovoCarro = () => {
                 </div>
             </div>
             <div className='input-adicionar'>
-                <ButtonSubmit text="Adicionar" onClick={()=>handleNewCar(modelo, placa, ano, cor, valor, status)}/>
+                <ButtonSubmit  text="Adicionar" onClick={()=>handleNewCar(modelo, placa, ano, cor, valor, status)}/>
+            </div>
+
+              <div>
+            <button onClick={notify}>Notify !</button>
+                <ToastContainer
+                position="bottom-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                />
             </div>
         </C.FormNovoCarroContainer>
     )
