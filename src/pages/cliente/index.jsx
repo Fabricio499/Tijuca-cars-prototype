@@ -19,7 +19,7 @@ export const Cliente = () => {
     function abriModal(){
         setOpenModal(true)
     }
-   
+
     return (
         <C.ContainerCliente>
             

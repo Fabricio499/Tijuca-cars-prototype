@@ -3,6 +3,8 @@ import * as C from './styles'
 import {useState} from 'react'
 import Api from '../../../services/api'
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 
 export const FormNovoCliente = () => {
     
@@ -14,22 +16,43 @@ export const FormNovoCliente = () => {
     const [telefone, setTelefone] = useState('')
     var status = 0;
 
-    async function handleNewUser(nome, dataNascimento, email, senha, telefone, cnh, status) {
-        const response = await Api.post('clientes/cadastro', {
-            nome: nome,
-            dataNascimento: dataNascimento,
-            email: email,
-            senha: senha,
-            telefone:telefone,
-            cnh: cnh,
-            status: status,
+    const notifySucc = () => toast.success('Novo usuário inserido!', {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    });;
 
-        })
-        if(response){
-            console.log(response)
-         
+    const notifyErr = () => toast.error('Insira corretamente os campos!', {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    });
+
+    async function handleNewUser(nome, dataNascimento, email, senha, telefone, cnh, status) {
+        if(nome.length > 0 && dataNascimento.length > 0 && email.length > 0 && senha.length > 0 && telefone.length > 0 && cnh.length > 0) {
+            const response = await Api.post('clientes/cadastro', {
+                nome: nome,
+                dataNascimento: dataNascimento,
+                email: email,
+                senha: senha,
+                telefone:telefone,
+                cnh: cnh,
+                status: status,
+    
+            })
+            notifySucc();
+        } else {
+            notifyErr();
         }
-    }
+}
     
     return (
         <C.FormNovoClienteContainer>
@@ -62,6 +85,17 @@ export const FormNovoCliente = () => {
             <div className='input-submit'>
                 <ButtonSubmit text="Cadastrar" onClick={()=>handleNewUser(nome, dataNascimento, email, senha, telefone, cnh, status) } />
             </div>
+            <ToastContainer
+                position="bottom-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
         </C.FormNovoClienteContainer>
     )
 }

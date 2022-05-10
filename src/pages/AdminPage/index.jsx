@@ -5,7 +5,7 @@ import { CardCliente } from '../../Components/Cards/CardCliente/index.jsx'
 import { CardAlguelAdm } from '../../Components/Cards/CardAluguelAdm'
 import { CardCarros } from '../../Components/Cards/CardCarros'
 import Api from '../../services/api'
-import React,{ useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 
 export const AdminPage = () => {

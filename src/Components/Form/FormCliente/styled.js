@@ -19,8 +19,37 @@ export const ContainerModalCliente = styled.div`
             margin: 1rem 0;
             transition: all ease-in .5s;
 
+            select {
+                background: none;
+                border: 0;
+                outline: 0;
+                border-bottom: 1px solid #f6f6f6;
+                width: 300px;
+                height: 40px;
+                transition: all ease-in .5s;
+                color: #F6f6f6;
 
-            input{
+                option {
+                    border: 0;
+                    outline: 0;
+                    color: #000;
+                    font-family: Poppins;
+
+                    &:hover, &:focus {
+                    transition: all ease-in .5s;
+                    border-bottom: 1px solid #F9A826;
+                    color: #F9A826;
+                }
+                }
+
+                &:hover, &:focus {
+                    transition: all ease-in .5s;
+                    border-bottom: 1px solid #F9A826;
+                    color: #F9A826;
+                }
+            }
+
+            input {
                 background: none;
                 border: 0;
                 outline: 0;
@@ -36,8 +65,8 @@ export const ContainerModalCliente = styled.div`
                     color: #F9A826;
                 }
             }
-            input[type="datetime-local"]::-webkit-inner-spin-button,
-            input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+            input[type="date"]::-webkit-inner-spin-button,
+            input[type="date"]::-webkit-calendar-picker-indicator {
                 filter: invert(1);
                 cursor: pointer;
             }

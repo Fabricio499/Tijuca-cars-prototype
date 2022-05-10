@@ -30,7 +30,7 @@ const Sidebar = ({ active }) => {
     function abrirModalCarro() { setVerModalCarro(true) }
     function fecharModalCarro() { setVerModalCarro(false) }
 
-    
+
     const handleLogout = () => {
         localStorage.removeItem('Token')
         window.location.href = "/"

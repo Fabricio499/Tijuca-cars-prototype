@@ -1,7 +1,9 @@
 
 import {Header, CloseIcon, Conteiner, Overlay} from './styles'
 import {FormCliente} from '../FormCliente'
+
 export const FormModalCliente = ({closeModal}) => {
+
     return (
             <Overlay>
             <Conteiner>
