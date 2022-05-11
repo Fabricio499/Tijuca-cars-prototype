@@ -2,12 +2,18 @@ import styled from 'styled-components'
 
 export const ContainerCliente = styled.div`
    
-   font-family: 'Roboto', sans-serif;
+   font-family: Poppins;
    color: #f6f6f6;
 
     .content-cliente {
         width: 80%;
         margin:auto;
+
+        h1 {
+            font-size: 18pt;
+            font-weight: 500;
+            margin: 2rem 0;
+        }
         
     }
     
@@ -16,8 +22,8 @@ export const ContainerCliente = styled.div`
         justify-content: flex-start;
         align-items: center;
         flex-wrap: wrap;
-
         gap: 26px;
+
     }
     .content-info {
         display: flex;

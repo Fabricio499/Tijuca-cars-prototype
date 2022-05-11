@@ -39,5 +39,6 @@ export const CardContainer = styled.div`
     &:hover {
         transition: all ease-in .4s;
         box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+        transform: scale(1.1);
     }
 `

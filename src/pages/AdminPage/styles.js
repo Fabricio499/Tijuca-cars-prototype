@@ -51,7 +51,7 @@ export const ContainerAdminPage = styled.div`
             align-items: center;
             flex-wrap: wrap;
 
-            gap: 26px;
+            gap: 90px;
         }
     }
 `

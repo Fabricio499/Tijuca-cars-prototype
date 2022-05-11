@@ -25,6 +25,7 @@ export const Cliente = () => {
             
             <Navbar />
             <div className='content-cliente'>
+                <h1>Bem vindo, Username</h1>
                 <div className='content-info'>
                     <span>Meus Aluguéis</span>
                     <ButtonSubmit  onClick={abriModal} text="Inserir Aluguel"/>

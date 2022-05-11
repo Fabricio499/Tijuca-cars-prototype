@@ -34,6 +34,9 @@ export const FormCliente = () => {
         status
         ) {
         if(dias > 0 && dataRetirada.length > 0 && valorAluguel.length > 0){
+
+            const dataReserva = new Date
+
             Api.post('alugueis/novoAluguel' {
                 modelo: ,
                 dataReserva: ,
