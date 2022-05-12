@@ -1,29 +1,30 @@
 import * as C from './styles'
+import { useEffect, useState } from 'react'
+
 import { Navbar } from '../../Components/Navbar'
 import { ButtonSubmit } from '../../Components/Form/buttonSubmit'
+
 import { CardCliente } from '../../Components/Cards/CardCliente/index.jsx'
 import { CardAlguelAdm } from '../../Components/Cards/CardAluguelAdm'
 import { CardCarros } from '../../Components/Cards/CardCarros'
 import Api from '../../services/api'
-import { useEffect, useState } from 'react'
 
 
 export const AdminPage = () => {
-  
+
     const [atualUser, setAtualUser] = useState(undefined)
 
-    useEffect(()=>{
+    useEffect(() => {
         const idUser = localStorage.getItem('UserID')
-        console.log(idUser)
 
         async function UserInfoPage() {
             const SingleUserInfo = await Api.get(`clientes/${idUser}`)
             setAtualUser(SingleUserInfo.data.response[0])
         }
         UserInfoPage()
-    
+
     }, [])
-  
+
 
     const [cars, setCars] = useState([])
 
@@ -36,8 +37,9 @@ export const AdminPage = () => {
     }, [])
 
     function removeCarro(idCarro) {
-        Api.delete(`carros/removeCarro/${idCarro}`).then(({data}) => {
-            setCars(cars.filter((cars) => cars.idCarro !== idCarro))//remove a consulta de acordo com o id
+        Api.delete(`carros/removeCarro/${idCarro}`).then(({ data }) => {
+            setCars(cars.filter((cars) => cars.idCarro !== idCarro))
+            //remove a consulta de acordo com o id
         })
             .catch((error) => {
                 console.log('deu errro aki', error);

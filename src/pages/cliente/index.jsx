@@ -24,8 +24,6 @@ export const Cliente = () => {
 
     useEffect(()=>{
         const idUser = localStorage.getItem('UserID')
-        console.log(idUser)
-
         async function UserInfoPage() {
             const SingleUserInfo = await Api.get(`clientes/${idUser}`)
             setAtualUser(SingleUserInfo.data.response[0])

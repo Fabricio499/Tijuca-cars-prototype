@@ -27,7 +27,7 @@ export const Login = () => {
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
 
-    async function teste(){
+    async function fazerLogin(){
         const response = await LoginCliente(email, senha)
         localStorage.setItem('UserID', response.data.idCliente)
         const token = response.data.token
@@ -79,7 +79,7 @@ export const Login = () => {
 
                     </div>
                 </div>
-                <button className='btn-enviar' onClick={()=>teste()}>LOGAR</button>
+                <button className='btn-enviar' onClick={()=>fazerLogin()}>LOGAR</button>
             </div>
             <ToastContainer
                 position="bottom-right"
