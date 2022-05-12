@@ -10,8 +10,13 @@ export const FormCliente = () => {
     const [carroAtual, setCarroAtual] = useState({})
     const [dias, setDias] = useState(0)
     const [dataRetirada, setDataRetirada] = useState('')
+    const [dataEntrega, setDataEntrega] = useState('')
     const [valorAluguel, setValorAluguel] = useState(0)
     const [dataAtual, setDataAtual] = useState('')
+    const [infoCar, setInfoCar] = useState(undefined)
+
+    const status = 1;
+
 
     useEffect(()=>{
         async function dataCar(){
@@ -23,37 +28,46 @@ export const FormCliente = () => {
 
     
     useEffect(()=>{
-        setValorAluguel(carroAtual * dias)
+        async function getSingleCar() {
+            const responseInfo = await Api.get(`carros/${carroAtual}`)
+            setInfoCar(responseInfo.data.response[0])
+            console.log(infoCar.valorDiaAluguel)
+            setValorAluguel(infoCar.valorDiaAluguel * dias)
+        }
+        getSingleCar()
     }, [carroAtual, dias])
 
 
     function dataDaReserva() {
         const PegarData = new Date();
-        const dia = String(PegarData.getDate()).padStart(2, '0');
+        const diaa = String(PegarData.getDate()).padStart(2, '0');
+        const dia = parseInt(diaa)
         const mes = String(PegarData.getMonth() + 1).padStart(2, '0');
         const ano = PegarData.getFullYear();
         setDataAtual(dia + '/' + mes + '/' + ano);
+        setDataEntrega(dia + 2 + '/' + mes + '/' + ano)
+        console.log(dataAtual)
+        console.log(dataEntrega)
     } 
     
 
     async function novoAluguel(
-        modelo,
+        /* modelo,
         dataReserva,
         dataRetirada,
         dataEntrega,
         qtdeDiasAlugados,
-        status
+        status */
         ) {
-        if(valorAluguel > 0){
             dataDaReserva();
-            console.log(dataAtual)
-           /* Api.post('alugueis/novoAluguel' {
-                idCarro: CarroAtual,
-                dataReserva: ,
-                dataRetirada: ,
+        if(valorAluguel > 0){
+          /*  Api.post('alugueis/novoAluguel', {
+                idCarro: carroAtual,
+                dataReserva: dataAtual,
+                dataRetirada: dataRetirada,
                 dataEntrega: ,
-                qtdeDiasAlugados: ,
-                status: ,
+                qtdeDiasAlugados: dias,
+                status: status,
             }) */
         } 
     }
@@ -91,7 +105,7 @@ export const FormCliente = () => {
                     type="number" 
                     value={dias} 
                     min="1"
-                    max="7"
+                    max="30"
                     onChange={e=>setDias(e.target.value)}
                     onKeyDown={(e) => e.preventDefault()}
                     />
