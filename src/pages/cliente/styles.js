@@ -8,6 +8,11 @@ export const ContainerCliente = styled.div`
     .content-cliente {
         width: 80%;
         margin:auto;
+
+        > h2 {
+            margin: 2rem 0;
+            font-weight: 400;
+        }
         
     }
     
@@ -23,6 +28,7 @@ export const ContainerCliente = styled.div`
         display: flex;
         justify-content: space-between;
         margin: 20px 0;
+
 
         span {
             color: #f6f6f6;

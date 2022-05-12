@@ -10,7 +10,19 @@ import { useEffect, useState } from 'react'
 
 export const AdminPage = () => {
   
+    const [atualUser, setAtualUser] = useState(undefined)
 
+    useEffect(()=>{
+        const idUser = localStorage.getItem('UserID')
+        console.log(idUser)
+
+        async function UserInfoPage() {
+            const SingleUserInfo = await Api.get(`clientes/${idUser}`)
+            setAtualUser(SingleUserInfo.data.response[0])
+        }
+        UserInfoPage()
+    
+    }, [])
   
 
     const [cars, setCars] = useState([])
@@ -38,7 +50,7 @@ export const AdminPage = () => {
 
 
             <div className='header-adm'>
-                <h2>Bem-Vindo, ADM</h2>
+                <h2>Bem vindo, Admin</h2>
             </div>
             <div className='all-aluguel'>
                 <h2>Todos os aluguéis</h2>

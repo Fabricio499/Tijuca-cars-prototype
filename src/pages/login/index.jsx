@@ -7,6 +7,9 @@ import img from '../../assets/image/car.svg';
 
 import { LoginCliente } from '../../controller/reqUser'
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
+
 export const Login = () => {
 
     const [view, setView] = useState(false)
@@ -20,30 +23,24 @@ export const Login = () => {
 
     }
 
-    // const handleLogin = async () => {
-    //     const response = await LoginCliente(email, senha)
-    //     console.log(response)
-    // }
 
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
 
     async function teste(){
         const response = await LoginCliente(email, senha)
-        console.log("response aqui", response.response)
+        localStorage.setItem('UserID', response.data.idCliente)
         const token = response.data.token
-        const adm = response.data.adm
         localStorage.setItem('Token', token)
+        
         
         if(response.data.token) {
             window.location.href='/cliente'
             return true
-        } else {
-            console.log(response)
-            alert(response)
-        }
-         
+        }         
     }
+
+    
 
     return (
         <C.ContainerLogin>
@@ -84,6 +81,17 @@ export const Login = () => {
                 </div>
                 <button className='btn-enviar' onClick={()=>teste()}>LOGAR</button>
             </div>
+            <ToastContainer
+                position="bottom-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
         </C.ContainerLogin>
     )
 }

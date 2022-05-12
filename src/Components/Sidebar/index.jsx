@@ -32,6 +32,7 @@ const Sidebar = ({ active }) => {
 
 
     const handleLogout = () => {
+        localStorage.removeItem('UserID')
         localStorage.removeItem('Token')
         window.location.href = "/"
     }

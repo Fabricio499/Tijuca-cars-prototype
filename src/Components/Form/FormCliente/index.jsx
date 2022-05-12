@@ -15,12 +15,19 @@ export const FormCliente = () => {
     const [dataAtual, setDataAtual] = useState('')
     const [infoCar, setInfoCar] = useState(undefined)
 
-    const status = 1;
+    const status = 3;
+    const [idCliente, setIdCliente] = useState(undefined)
+
+    useEffect(()=>{
+        const buscarId = localStorage.getItem('UserID')
+        setIdCliente(buscarId)
+        console.log(idCliente)
+    },[])
 
 
     useEffect(()=>{
         async function dataCar(){
-            const response = await Api.get('carros/carros')
+            const response = await Api.get('carros/carrosDisponiveis')
             setCars(response.data.response)
         }
         dataCar();
@@ -52,23 +59,26 @@ export const FormCliente = () => {
     
 
     async function novoAluguel(
-        /* modelo,
+        idCarro,
+        idCliente,
         dataReserva,
         dataRetirada,
         dataEntrega,
         qtdeDiasAlugados,
-        status */
+        status,
         ) {
             dataDaReserva();
         if(valorAluguel > 0){
-          /*  Api.post('alugueis/novoAluguel', {
+          const response = Api.post('alugueis/novoAluguel', {
                 idCarro: carroAtual,
+                idCliente: idCliente,
                 dataReserva: dataAtual,
                 dataRetirada: dataRetirada,
-                dataEntrega: ,
+                dataEntrega: dataEntrega,
                 qtdeDiasAlugados: dias,
                 status: status,
-            }) */
+            })
+            console.log(response)
         } 
     }
 

@@ -1,5 +1,18 @@
 import Api from '../services/api'
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
+
+const notifyErr = () => toast.error('Falha na Autênticação!', {
+    position: "bottom-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+});
+
 export async function LoginCliente(email, senha) {
 try {
     const response =  await Api.post('/clientes/login', {
@@ -9,5 +22,5 @@ try {
     return response;
 } catch (error) {
     console.log("aquiiiii",error.response.data)
-}
-}
+    notifyErr()
+} } 

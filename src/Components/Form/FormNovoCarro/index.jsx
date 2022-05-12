@@ -9,8 +9,6 @@ import 'react-toastify/dist/ReactToastify.css'
 
 export const FormNovoCarro = ({ closeModalCarro }) => {
 
-    const [error, setError] = useState(false)
-
     const notifySucc = () => toast.success('Carro adicionado com sucesso!', {
         position: "bottom-right",
         autoClose: 5000,

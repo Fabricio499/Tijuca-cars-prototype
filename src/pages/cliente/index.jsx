@@ -20,11 +20,26 @@ export const Cliente = () => {
         setOpenModal(true)
     }
 
+    const [atualUser, setAtualUser] = useState(undefined)
+
+    useEffect(()=>{
+        const idUser = localStorage.getItem('UserID')
+        console.log(idUser)
+
+        async function UserInfoPage() {
+            const SingleUserInfo = await Api.get(`clientes/${idUser}`)
+            setAtualUser(SingleUserInfo.data.response[0])
+        }
+        UserInfoPage()
+    
+    }, [])
+
     return (
         <C.ContainerCliente>
             
             <Navbar />
             <div className='content-cliente'>
+                <h2>Bem vindo, {atualUser?.nome}</h2>
                 <div className='content-info'>
                     <span>Meus Aluguéis</span>
                     <ButtonSubmit  onClick={abriModal} text="Inserir Aluguel"/>
