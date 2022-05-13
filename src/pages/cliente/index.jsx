@@ -48,8 +48,8 @@ export const Cliente = () => {
                         contentLabel="Modal exemplo"
                         overleyClassName="modalCliente"
                         className='modalCliente'
+                        ariaHideApp={false}
                     >
-                        
                         <FormModalCliente
                             closeModal={fecharModal}
                         />

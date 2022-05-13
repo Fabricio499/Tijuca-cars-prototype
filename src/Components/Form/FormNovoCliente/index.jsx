@@ -1,6 +1,6 @@
 import { ButtonSubmit } from '../buttonSubmit'
 import * as C from './styles'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import Api from '../../../services/api'
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -14,7 +14,11 @@ export const FormNovoCliente = () => {
     const [senha, setSenha] = useState('')
     const [cnh, setCnh] = useState('')
     const [telefone, setTelefone] = useState('')
-    var status = 0;
+    const [status, setStatus] = useState(0)
+
+    useEffect(()=>{
+        setStatus(0)
+    },[])
 
     const notifySucc = () => toast.success('Novo usuário inserido!', {
         position: "bottom-right",
@@ -45,7 +49,7 @@ export const FormNovoCliente = () => {
                 senha: senha,
                 telefone:telefone,
                 cnh: cnh,
-                status: status,
+                status: status
     
             })
             notifySucc();

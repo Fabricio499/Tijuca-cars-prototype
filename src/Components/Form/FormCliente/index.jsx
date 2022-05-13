@@ -4,6 +4,11 @@ import { useState, useEffect } from 'react'
 import { ContainerModalCliente } from './styled'
 import { ButtonSubmit } from "../buttonSubmit"
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
+
+import moment from "moment"
+
 import Api from '../../../services/api'
 
 export const FormCliente = () => {
@@ -21,6 +26,26 @@ export const FormCliente = () => {
     const statusAluguel = 0;
     const [idCliente, setIdCliente] = useState(undefined)
 
+    const notifySucc = () => toast.success('Você tem um novo Aluguel!', {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    });;
+
+    const notifyErr = () => toast.error('Você não pode executar essa operação!', {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    });
+
     useEffect(() => {
         const buscarId = localStorage.getItem('UserID')
         setIdCliente(buscarId)
@@ -35,7 +60,6 @@ export const FormCliente = () => {
         dataCar();
     }, [])
 
-    const teste = "avas";
 
     useEffect(() => {
         dataDaReserva();
@@ -49,17 +73,19 @@ export const FormCliente = () => {
 
 
     function dataDaReserva() {
-        const PegarData = new Date();
-        const diaa = String(PegarData.getDate()).padStart(2, '0');
-        const dia = parseInt(diaa)
-        const mes = String(PegarData.getMonth() + 1).padStart(2, '0');
-        const ano = PegarData.getFullYear();
-        setDataReserva(dia + '-' + mes + '-' + ano);
-        setDataEntrega(dia + 2 + '-' + mes + '-' + ano)
-        console.log(dataReserva)
+        const dataMomentoReserva = moment().format('YYYY-MM-DD') 
+        setDataReserva(dataMomentoReserva)
+        onCalcularData(dataReserva, qtdeDiasAlugados)
+        
+        // console.log(dataReserva)
+    }
+    function onCalcularData(data, dias){
+        const dataDaEntrega = moment().add(dias, 'days')
+        const newDataEntrega = dataDaEntrega.format('YYYY-MM-DD')
+        setDataEntrega(newDataEntrega)
+        // console.log(qtdeDiasAlugados)
         console.log(dataEntrega)
     }
-
 
     async function novoAluguel(
         idCarro,
@@ -68,19 +94,27 @@ export const FormCliente = () => {
         dataRetirada,
         dataEntrega,
         qtdeDiasAlugados,
+        valorAluguel,
         statusAluguel
     ) {
-        if (valorAluguel > 0) {
-            const response = await Api.post('alugueis/novoAluguel', {
-                idCarro: idCarro,
-                idCliente: idCliente,
-                dataReserva: dataReserva,
-                dataRetirada: dataRetirada,
-                dataEntrega: dataEntrega,
-                qtdeDiasAlugados: qtdeDiasAlugados,
-                statusAluguel: statusAluguel
-            }).then(r=>console.log(r))
-            
+        try {
+            if (valorAluguel > 0) {
+                const response = await Api.post('alugueis/novoAluguel', {
+                    idCarro: idCarro,
+                    idCliente: idCliente,
+                    dataReserva: dataReserva,
+                    dataRetirada: dataRetirada,
+                    dataEntrega: dataEntrega,
+                    qtdeDiasAlugados: qtdeDiasAlugados,
+                    valorAluguel: valorAluguel,
+                    statusAluguel: statusAluguel
+                })
+                notifySucc()
+                
+            }
+        } catch (error) {
+            console.log(error.response.data.mensagem)
+            notifyErr()
         }
     }
 
@@ -137,10 +171,22 @@ export const FormCliente = () => {
                         dataRetirada,
                         dataEntrega,
                         qtdeDiasAlugados,
+                        valorAluguel,
                         statusAluguel
                     )} 
                     />
             </div>
+            <ToastContainer
+                position="bottom-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
         </ContainerModalCliente>
     )
 }
