@@ -20,9 +20,7 @@ export const FormCliente = () => {
     const [dataEntrega, setDataEntrega] = useState('')
     const [valorAluguel, setValorAluguel] = useState(0)
     const [dataReserva, setDataReserva] = useState('')
-    const [infoCar, setInfoCar] = useState(undefined)
-
-    const statusCliente = 0;
+    const [infoCar, setInfoCar] = useState(0)
     const statusAluguel = 0;
     const [idCliente, setIdCliente] = useState(undefined)
 
@@ -60,12 +58,12 @@ export const FormCliente = () => {
         dataCar();
     }, [])
 
-
     useEffect(() => {
         dataDaReserva();
         async function getSingleCar() {
             const responseInfo = await Api.get(`carros/${idCarro}`)
             setInfoCar(responseInfo.data.response[0])
+            console.log(responseInfo)
             setValorAluguel(infoCar.valorDiaAluguel * qtdeDiasAlugados)
         }
         getSingleCar()
@@ -73,18 +71,17 @@ export const FormCliente = () => {
 
 
     function dataDaReserva() {
-        const dataMomentoReserva = moment().format('YYYY-MM-DD') 
+        const dataMomentoReserva = moment().format('YYYY-MM-DD')
         setDataReserva(dataMomentoReserva)
         onCalcularData(dataReserva, qtdeDiasAlugados)
-        
+
         // console.log(dataReserva)
     }
-    function onCalcularData(data, dias){
+    function onCalcularData(data, dias) {
         const dataDaEntrega = moment().add(dias, 'days')
         const newDataEntrega = dataDaEntrega.format('YYYY-MM-DD')
         setDataEntrega(newDataEntrega)
         // console.log(qtdeDiasAlugados)
-        console.log(dataEntrega)
     }
 
     async function novoAluguel(
@@ -110,7 +107,7 @@ export const FormCliente = () => {
                     statusAluguel: statusAluguel
                 })
                 notifySucc()
-                
+
             }
         } catch (error) {
             console.log(error.response.data.mensagem)
@@ -123,13 +120,17 @@ export const FormCliente = () => {
             <div className='form-model-cliente'>
                 <div className='campo-input'>
                     <label>Modelo do Veículo</label>
-                    <select onChange={e => setIdCarro(e.target.value)}>
-                        <option value="" selected>
+                    <select
+                        onChange={e => setIdCarro(e.target.value)}
+                        defaultValue={'DEFAULT'}
+                        >
+                        <option value="DEFAULT" selected>
                             selecione um modelo
                         </option>
                         {cars.length > 0 &&
                             cars.map((cars) => (
                                 <option
+                                    key={cars.idCarro}
                                     value={cars.idCarro}
                                 >{cars.modelo}  -  {cars.placa}</option>
                             ))
@@ -173,8 +174,8 @@ export const FormCliente = () => {
                         qtdeDiasAlugados,
                         valorAluguel,
                         statusAluguel
-                    )} 
-                    />
+                    )}
+                />
             </div>
             <ToastContainer
                 position="bottom-right"

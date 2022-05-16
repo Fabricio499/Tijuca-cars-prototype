@@ -35,7 +35,7 @@ export const FormNovoCarro = ({ closeModalCarro }) => {
     const [ano, setAno] = useState('')
     const [cor, setCor] = useState('')
     const [valor, setValor] = useState('')
-    var status = 0;
+    const [status, setStatus] = useState(3)
 
     async function handleNewCar(modelo, placa, ano, cor, valor, status) {
         if (modelo.length > 0 && placa.length > 0 && ano.length > 0 && cor.length > 0 && valor.length > 0) {

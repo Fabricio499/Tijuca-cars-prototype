@@ -14,6 +14,7 @@ export const FormNovoCliente = () => {
     const [senha, setSenha] = useState('')
     const [cnh, setCnh] = useState('')
     const [telefone, setTelefone] = useState('')
+    const [admin, setAdmin] = useState(0)
     const [status, setStatus] = useState(0)
 
     useEffect(()=>{
@@ -40,22 +41,45 @@ export const FormNovoCliente = () => {
         progress: undefined,
     });
 
-    async function handleNewUser(nome, dataNascimento, email, senha, telefone, cnh, status) {
-        if(nome.length > 0 && dataNascimento.length > 0 && email.length > 0 && senha.length > 0 && telefone.length > 0 && cnh.length > 0) {
-            const response = await Api.post('clientes/cadastro', {
-                nome: nome,
-                dataNascimento: dataNascimento,
-                email: email,
-                senha: senha,
-                telefone:telefone,
-                cnh: cnh,
-                status: status
-    
-            })
-            notifySucc();
+    function changeAdmin() {
+        if(admin === 0) {
+            setAdmin(1)
         } else {
-            notifyErr();
+            setAdmin(0)
         }
+    }
+
+    async function handleNewUser(nome, dataNascimento, email, senha, telefone, cnh, admin, status) {
+        try {
+            if(nome.length > 0 && dataNascimento.length > 0 && email.length > 0 && senha.length > 0 && telefone.length > 0 && cnh.length > 0) {
+                const response = await Api.post('clientes/cadastro', {
+                    nome: nome,
+                    dataNascimento: dataNascimento,
+                    email: email,
+                    senha: senha,
+                    telefone:telefone,
+                    cnh: cnh,
+                    admin: admin,
+                    status: status
+        
+                })
+                notifySucc();
+            } else {
+                notifyErr();
+            }
+        } catch (error) {
+            const notifyErr2 = () => toast.error(error.response.data.mensagem, {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            notifyErr2()
+        }
+        
 }
     
     return (
@@ -85,9 +109,13 @@ export const FormNovoCliente = () => {
                     <label>Senha:</label>
                     <input type="password" value={senha} onChange={e=>setSenha(e.target.value)} />
                 </div>
+                <div className='campo-info'>
+                    <label>Admin</label>
+                    <input type="checkbox" value={admin} onClick={changeAdmin}/>
+                </div>
             </div>
             <div className='input-submit'>
-                <ButtonSubmit text="Cadastrar" onClick={()=>handleNewUser(nome, dataNascimento, email, senha, telefone, cnh, status) } />
+                <ButtonSubmit text="Cadastrar" onClick={()=>handleNewUser(nome, dataNascimento, email, senha, telefone, cnh, admin, status) } />
             </div>
             <ToastContainer
                 position="bottom-right"

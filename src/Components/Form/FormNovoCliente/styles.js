@@ -13,6 +13,7 @@ export const FormNovoClienteContainer = styled.div`
         margin-top: 2rem;
         display: flex;
         justify-content: space-between;
+        align-items: center;
 
         input[type="date"]::-webkit-inner-spin-button,
             input[type="date"]::-webkit-calendar-picker-indicator {
@@ -40,6 +41,9 @@ export const FormNovoClienteContainer = styled.div`
             }
 
             
+        }
+        input[type="checkbox"] {
+            margin-left: -80%;
         }
     }
 

@@ -40,10 +40,9 @@ export const ContainerCardCarros = styled.div`
     }
 
     .btnExcluir{
-        width: 100px;
-        height: 30px;
-        margin-top:20px;
-        margin-left: 40%;
+        flex: 1;
+        height: 2rem;
+        margin: 1.5rem auto;
         
         display: flex;
         justify-content: center;
