@@ -58,18 +58,23 @@ export const FormCliente = () => {
         dataCar();
     }, [])
 
-    useEffect(() => {
-        dataDaReserva();
+    
+    useEffect(()=>{
         async function getSingleCar() {
             const responseInfo = await Api.get(`carros/${idCarro}`)
             setInfoCar(responseInfo.data.response[0])
-            console.log(responseInfo)
-            setValorAluguel(infoCar.valorDiaAluguel * qtdeDiasAlugados)
+            console.log(responseInfo.data)
         }
         getSingleCar()
-    }, [idCarro, qtdeDiasAlugados])
-
-
+        setValorAluguel(0)
+        setQtdeDiasAlugados(0)
+    }, [idCarro])
+    
+    useEffect(() => {
+        dataDaReserva();
+        setValorAluguel(infoCar.valorDiaAluguel * qtdeDiasAlugados)
+    }, [qtdeDiasAlugados])
+    
     function dataDaReserva() {
         const dataMomentoReserva = moment().format('YYYY-MM-DD')
         setDataReserva(dataMomentoReserva)
@@ -153,6 +158,7 @@ export const FormCliente = () => {
                         value={qtdeDiasAlugados}
                         min="1"
                         max="30"
+                        maxlength="3" pattern="([0-9]{3})"
                         onChange={e => setQtdeDiasAlugados(e.target.value)}
                         onKeyDown={(e) => e.preventDefault()}
                     />
