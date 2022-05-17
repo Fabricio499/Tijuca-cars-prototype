@@ -51,7 +51,7 @@ export const FormNovoCliente = () => {
 
     async function handleNewUser(nome, dataNascimento, email, senha, telefone, cnh, admin, status) {
         try {
-            if(nome.length > 0 && dataNascimento.length > 0 && email.length > 0 && senha.length > 0 && telefone.length > 0 && cnh.length > 0) {
+            if(nome.length > 0 && dataNascimento.length > 0 && email.length > 0 && senha.length > 0 && telefone.length > 0 && telefone.length <= 9 &&cnh.length > 0) {
                 const response = await Api.post('clientes/cadastro', {
                     nome: nome,
                     dataNascimento: dataNascimento,

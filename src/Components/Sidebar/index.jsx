@@ -1,8 +1,9 @@
-import { React, useState } from 'react';
+import { React, useEffect, useState } from 'react';
 import { Container, Content } from './styled'
 import { FaTimes, FaUserAlt, } from 'react-icons/fa';
 import { BiLogOut } from 'react-icons/bi'
 import { AiFillCar } from 'react-icons/ai'
+import { RiAdminFill } from 'react-icons/ri'
 import Modal from 'react-modal'
 import SidebarItem from '../SidebarItem'
 import { ModalNovoCliente } from '../modals/ModalNovoCliente'
@@ -11,6 +12,7 @@ import { ButtonSubmit } from '../Form/buttonSubmit';
 import { ModalNovoCarro } from '../modals/ModalNovoCarro';
 
 import { useHistory } from 'react-router-dom'
+import Api from '../../services/api';
 
 const Sidebar = ({ active }) => {
     const closeSidebar = () => {
@@ -23,6 +25,7 @@ const Sidebar = ({ active }) => {
 
     const [verModalCliente, setVerModalCliente] = useState(false)
     const [verModalCarro, setVerModalCarro] = useState(false)
+    const [blockAdmin, setBlockAdmin] = useState(true)
 
     function abrirModalCliente() { setVerModalCliente(true) }
     function fecharModalCliente() { setVerModalCliente(false) }
@@ -37,6 +40,24 @@ const Sidebar = ({ active }) => {
         window.location.href = "/"
     }
 
+    const adminChecked = () => {
+        window.location.href='/admin'
+    }
+
+    useEffect(() => {
+        const idUser = localStorage.getItem('UserID')
+
+        async function UserInfoPage() {
+            const SingleUserInfo = await Api.get(`clientes/${idUser}`)
+            if (SingleUserInfo.data.response[0].adm == 1) {
+                setBlockAdmin(false)
+            }
+            
+        }
+        UserInfoPage()
+
+    }, [])
+
 
     return (
         <Container sidebar={active}>
@@ -48,6 +69,14 @@ const Sidebar = ({ active }) => {
                         <button onClick={handleLogout} className='btn-modal'>
                             <BiLogOut /> Logout
                         </button>
+                        {blockAdmin == true ?
+                            ''
+                        :
+                            <button onClick={adminChecked}              className='btn-modal'>
+                            <RiAdminFill /> Admin
+                            </button>
+                        }
+                        
                     </>
                 ) : (
                     <>

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { Navbar } from '../../Components/Navbar'
 import { ButtonSubmit } from '../../Components/Form/buttonSubmit'
 
-import { CardCliente } from '../../Components/Cards/CardCliente/index.jsx'
+// import { CardCliente } from '../../Components/Cards/CardCliente/index.jsx'
 import { CardAlguelAdm } from '../../Components/Cards/CardAluguelAdm'
 import { CardCarros } from '../../Components/Cards/CardCarros'
 import Api from '../../services/api'
@@ -19,12 +19,14 @@ export const AdminPage = () => {
 
         async function UserInfoPage() {
             const SingleUserInfo = await Api.get(`clientes/${idUser}`)
-            setAtualUser(SingleUserInfo.data.response[0])
+            if (SingleUserInfo.data.response[0].adm == 0) {
+                window.location.href="/cliente"
+            }
+            
         }
         UserInfoPage()
 
     }, [])
-
 
     const [cars, setCars] = useState([])
 
@@ -69,6 +71,7 @@ export const AdminPage = () => {
                     {cars.length > 0 &&
                         cars.map((cars) => (
                             <CardCarros
+                                key={cars.idCarro}
                                 idCarro={cars.idCarro}
                                 modelo={cars.modelo}
                                 ano={cars.ano}

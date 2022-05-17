@@ -18,11 +18,9 @@ export const ContainerCliente = styled.div`
     
     .cards {
         display: flex;
-        justify-content: flex-start;
+        justify-content: space-around;
         align-items: center;
         flex-wrap: wrap;
-
-        gap: 26px;
     }
     .content-info {
         display: flex;

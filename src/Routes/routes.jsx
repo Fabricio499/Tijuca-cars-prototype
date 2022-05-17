@@ -12,6 +12,7 @@ import { AdminPage } from '../pages/AdminPage'
 import {Cliente} from '../pages/cliente'
 
 
+
  const PrivateRoute = ({ component: Component, ...rest }) => {
     return (
          <Route {...rest} render={props => (
@@ -31,7 +32,6 @@ export const Routes = () => {
                 <Route exact path='/' component={Login} />
                 <PrivateRoute path='/cliente' component={Cliente} />
                 <PrivateRoute path='/admin' component={AdminPage} />
-
             </Switch>
         </BrowserRouter>
     )

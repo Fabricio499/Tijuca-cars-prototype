@@ -1,15 +1,27 @@
 import {React, useEffect, useState} from 'react'
 import * as C from './styles'
 import {Navbar} from '../../Components/Navbar'
-import { CardCliente } from '../../Components/Cards/CardCliente'
+import {CardCliente}  from '../../Components/Cards/CardCliente'
 import { ButtonSubmit } from '../../Components/Form/buttonSubmit'
 import { FormModalCliente } from '../../Components/Form/FormModalCliente'
 import Modal from 'react-modal/lib/components/Modal'
 import Api from '../../services/api'
+import { meuAluguel } from '../../controller/reqMeuAluguel'
 
 
 export const Cliente = () => {
     
+    const [meusAlugueis, setMeusAlugueis] = useState('')
+
+    async function buscarMeusAlugueis(){
+        const meuID = localStorage.getItem('UserID')
+        const meusAlugueisGet = await meuAluguel(meuID)
+        setMeusAlugueis(meusAlugueisGet)
+        console.log(meusAlugueis)
+    }
+    buscarMeusAlugueis();
+
+
     const [openModal, setOpenModal] = useState(false)
 
     function fecharModal() {
@@ -56,18 +68,19 @@ export const Cliente = () => {
                     </Modal> 
                 </div>
                 <div className='cards'>
-                    <CardCliente />
-                    <CardCliente />
-                    <CardCliente />
-                    <CardCliente />
-                    <CardCliente />
-                    <CardCliente />
-                    <CardCliente />
-                    <CardCliente />
-                    <CardCliente />
-                    <CardCliente />
-                    <CardCliente />
-                    <CardCliente />
+                    {meusAlugueis.length > 0 &&
+                        meusAlugueis.map((aluguel)=>(
+                            <CardCliente 
+                                key={aluguel.idAluguel}
+                                idCarro={aluguel.idCarro}
+                                idAluguel={aluguel.idAluguel}
+                                dataReserva={aluguel.dataReserva}
+                                dataRetirada={aluguel.dataRetirada}
+                                dataEntrega={aluguel.dataEntrega}
+                                valorAluguel={aluguel.valorAluguel}
+                                status={aluguel.statusAluguel}
+                            />
+                        ))}
                 </div>
             </div>
         </C.ContainerCliente>

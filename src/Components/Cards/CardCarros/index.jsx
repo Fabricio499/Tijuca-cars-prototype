@@ -1,7 +1,5 @@
 import * as C from './styles'
 import { ButtonSubmit } from '../../Form/buttonSubmit'
-import Api from '../../../services/api'
-import { useState, useEffect } from 'react'
 
 export const CardCarros = ({
     idCarro,
@@ -43,7 +41,7 @@ export const CardCarros = ({
                     <span>Status:</span>
                     <h2>{status}</h2>
                 </div>
-                    <ButtonSubmit text="Excluir" className='btnExcluir' onClick={remove} />
+                <ButtonSubmit text="Excluir" className='btnExcluir' onClick={remove} />
 
 
 
