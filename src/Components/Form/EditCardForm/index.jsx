@@ -1,30 +1,21 @@
 import * as C from './styles.js'
-import { AiOutlineClockCircle, AiOutlineCheckCircle, AiOutlineEdit } from 'react-icons/ai'
-import { MdOutlineDoNotDisturb } from 'react-icons/md'
-import { RiMapPinUserLine } from 'react-icons/ri'
+import { AiFillCheckCircle, AiFillCloseCircle } from 'react-icons/ai'
+import { EditStatusAluguel } from '../../../controller/reqEditStatusAluguel.js'
 
-
-export const EditCardForm = () => {
+export const EditCardForm = ({idAluguel, idCarro}) => {
     
+    async function EditStatus(){
+        const response = EditStatusAluguel(idAluguel, idCarro)
+        console.log(response)
+    }
+
     return (
        <C.ContainerEditCard>
            <h2>Selecione um novo Status</h2>
-           <div className='div-status'>
+           <div className='div-status' onClick={EditStatus}>
                 <div className='single-status'>
-                    <label>Cancelado</label>
-                    <MdOutlineDoNotDisturb />
-                </div>
-                <div className='single-status'>
-                    <label>Agendado</label>
-                    <AiOutlineClockCircle />
-                </div>
-                <div className='single-status'>
-                    <label>Em uso</label>
-                    <RiMapPinUserLine />
-                </div>
-                <div className='single-status'>
-                    <label>Devolvido</label>
-                    <AiOutlineCheckCircle />
+                    <label>Finalizado</label>
+                    <AiFillCloseCircle />
                 </div>
            </div>
        </C.ContainerEditCard>

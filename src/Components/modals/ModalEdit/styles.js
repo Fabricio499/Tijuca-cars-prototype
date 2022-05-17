@@ -3,7 +3,7 @@ import { RiCloseLine } from 'react-icons/ri'
 
 export const Conteiner = styled.div`
     background-color: #0D47A1;
-    width:600px;
+    width: 350px;
     height: 300px;
     max-width: 1000px;
     max-height: 1000px;
@@ -17,7 +17,7 @@ export const Conteiner = styled.div`
 
 export const Header = styled.div`
 display: flex;
-justify-content: space-between;
+justify-content: end;
 align-items: center;
 
 width: 100%;
@@ -43,11 +43,11 @@ h1{
 `
 
 export const CloseIcon =styled(RiCloseLine)`
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 20px;
     color: #F9A826;
-    margin-right: 30px;
-    margin-top: 30px;
+    margin-right: 0px;
+    margin-top: 0px;
 
 `
 

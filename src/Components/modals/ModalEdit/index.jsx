@@ -1,10 +1,8 @@
-import { ButtonSubmit } from '../../Form/buttonSubmit'
 import { EditCardForm } from '../../Form/EditCardForm'
 import * as C from './styles'
 import {Header, CloseIcon, Conteiner, Overlay} from './styles'
 
-
-export const ModalEdit = ({closeModal}) => {
+export const ModalEdit = ({closeModal, idAluguel, idCarro}) => {
     return (
             <Overlay>
             <Conteiner>
@@ -14,7 +12,10 @@ export const ModalEdit = ({closeModal}) => {
                     <CloseIcon  />
                 </button>
             </Header>
-            <EditCardForm />
+            <EditCardForm
+                idAluguel={idAluguel}
+                idCarro={idCarro}
+            />
             </Conteiner>
             </Overlay>
     )

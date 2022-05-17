@@ -23,7 +23,7 @@ export const CardAlguelAdmContainer = styled.div`
         justify-content: space-between;
 
         .info-client {
-            margin-left: 2.5rem;
+            margin-left: .5rem;
             display: flex;
         }
 
@@ -51,12 +51,13 @@ export const CardAlguelAdmContainer = styled.div`
 
 
         .single-info {
-            margin: 0 2.5rem;
+            margin: 0 .5rem;
             display: flex;
             justify-content: space-between;
 
             p {
                 color: #F9A826;
+                font-size: 9pt;
             }
         }
     }

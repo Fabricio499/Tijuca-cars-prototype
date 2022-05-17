@@ -4,12 +4,18 @@ export const ContainerEditCard = styled.div`
     margin-top: 4rem;
     color: #f6f6f6;
 
-    width: 93%;
+    width: 100%;
+    
+    h2 {
+        text-align: center;
+    }
 
     .div-status {
         display: flex;
-        flex-direction: row;
-        gap: 6.2rem;
+        justify-content: center;
+        gap: 5rem;
+        width: 50%;
+        margin: 2rem auto;
 
         .single-status {
             margin: 2rem 0;

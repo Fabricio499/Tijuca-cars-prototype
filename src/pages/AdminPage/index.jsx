@@ -8,6 +8,7 @@ import { ButtonSubmit } from '../../Components/Form/buttonSubmit'
 import { CardAlguelAdm } from '../../Components/Cards/CardAluguelAdm'
 import { CardCarros } from '../../Components/Cards/CardCarros'
 import Api from '../../services/api'
+import { getTodosAlugueis } from '../../controller/reqTodosAlugueis'
 
 
 export const AdminPage = () => {
@@ -20,9 +21,9 @@ export const AdminPage = () => {
         async function UserInfoPage() {
             const SingleUserInfo = await Api.get(`clientes/${idUser}`)
             if (SingleUserInfo.data.response[0].adm == 0) {
-                window.location.href="/cliente"
+                window.location.href = "/cliente"
             }
-            
+
         }
         UserInfoPage()
 
@@ -30,14 +31,14 @@ export const AdminPage = () => {
 
     const [cars, setCars] = useState([])
 
-    useEffect(() => {
-        async function dataCar() {
-            const response = await Api.get('carros/carros')
-            setCars(response.data.response)
-        }
-        dataCar();
-    }, [])
+    async function dataCar() {
+        const response = await Api.get('carros/carros')
+        console.log(response)
+        setCars(response.data.response)
+    }
+    dataCar();
 
+    // --> Remover Carros 
     function removeCarro(idCarro) {
         Api.delete(`carros/removeCarro/${idCarro}`).then(({ data }) => {
             setCars(cars.filter((cars) => cars.idCarro !== idCarro))
@@ -48,10 +49,18 @@ export const AdminPage = () => {
             })
     }
 
+    const [todosAlugueis, setTodosAlugueis] = useState('')
+
+    async function getAlugueis() {
+        const response = await getTodosAlugueis()
+        setTodosAlugueis(response.data.response)
+    }
+    getAlugueis()
+
+
     return (
         <C.ContainerAdminPage>
             <Navbar />
-
 
             <div className='header-adm'>
                 <h2>Bem vindo, Admin</h2>
@@ -59,10 +68,21 @@ export const AdminPage = () => {
             <div className='all-aluguel'>
                 <h2>Todos os aluguéis</h2>
                 <div className='card-div'>
-                    <CardAlguelAdm />
-                    <CardAlguelAdm />
-                    <CardAlguelAdm />
-                    <CardAlguelAdm />
+                    {todosAlugueis.length > 0 &&
+                        todosAlugueis.map((tdsAlugueis) => (
+                            <CardAlguelAdm
+                                key={tdsAlugueis.idAluguel}
+                                idAluguel={tdsAlugueis.idAluguel}
+                                idCarro={tdsAlugueis.idCarro}
+                                idCliente={tdsAlugueis.idCliente}
+                                reserva={tdsAlugueis.dataReserva}
+                                retirada={tdsAlugueis.dataRetirada}
+                                entrega={tdsAlugueis.dataEntrega}
+                                valor={tdsAlugueis.valorAluguel}
+                                status={tdsAlugueis.statusAluguel}
+                            />
+                        ))
+                    }
                 </div>
             </div>
             <div className='all-cars'>
