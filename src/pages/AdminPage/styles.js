@@ -31,11 +31,11 @@ export const ContainerAdminPage = styled.div`
             margin-top: 1rem;
             display: flex;
             
-            justify-content: flex-start;
+            justify-content: space-around;
             align-items: center;
             flex-wrap: wrap;
 
-            gap: 26px;
+            gap: 20px;
         }
     }
 

@@ -8,7 +8,7 @@ AiFillCloseCircle,
 AiOutlineEdit
 }
     from 'react-icons/ai'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import Modal from 'react-modal'
 import { getSingleCar } from '../../../controller/reqSingleCar'
@@ -26,7 +26,7 @@ export const CardAlguelAdm = ({
 }) => {
 
 
-
+    // --> Abrir modal de editar status
     const [verEdicao, setVerEdicao] = useState(false)
 
     const abrirEdit = () => {
@@ -37,22 +37,30 @@ export const CardAlguelAdm = ({
         setVerEdicao(false)
     }
 
+    // --> Pegar e setar valores do Carro de acordo com seu ID
     const [nameCar, setNameCar] = useState('')
+    const [plateCar, setPlateCar] = useState('')
+    useEffect(()=>{
+        async function getCar() {
+            const responseCar = await getSingleCar(idCarro)
+            setPlateCar(responseCar.data.response[0].placa)
+            setNameCar(responseCar.data.response[0].modelo)
+        }
+        getCar()
+    }, [])
 
-    async function getCar() {
-        const responseCar = await getSingleCar(idCarro)
-        setNameCar(responseCar.data.response[0].modelo)
-    }
-    getCar()
-
-    async function getUser() {
-        const responseUser = await getSingleUser(idCliente)
-        console.log(responseUser)
-    }
-    getUser()
+    // --> Pegar e setar valores do Usuário
+    const [userName, setUserName] = useState('')
+    useEffect(()=>{
+        async function getUser() {
+            const responseUser = await getSingleUser(idCliente)
+            setUserName(responseUser.data.response[0].nome)
+        }
+        getUser()
+    },[])
 
     return (
-        <C.CardAlguelAdmContainer>
+        <C.CardAlguelAdmContainer status={status}>
 
             <Modal
                 isOpen={verEdicao}
@@ -71,7 +79,7 @@ export const CardAlguelAdm = ({
 
             <div className='header-card'>
                 <div className='info-client'>
-                    <span>Cliente:</span><p>{idCliente}</p>
+                    <span>Cliente:</span><p>{userName}</p>
                 </div>
                 <div className='edit' onClick={abrirEdit}>
                     <AiOutlineEdit />
@@ -82,7 +90,7 @@ export const CardAlguelAdm = ({
                     <span>Modelo:</span><p>{nameCar}</p>
                 </div>
                 <div className='single-info'>
-                    <span>Placa:</span><p>Nome</p>
+                    <span>Placa:</span><p>{plateCar}</p>
                 </div>
                 <div className='single-info'>
                     <span>Retirada:</span><p>{retirada}</p>

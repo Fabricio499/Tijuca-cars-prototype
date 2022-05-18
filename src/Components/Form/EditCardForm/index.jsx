@@ -1,6 +1,7 @@
 import * as C from './styles.js'
-import { AiFillCheckCircle, AiFillCloseCircle } from 'react-icons/ai'
+import { AiFillCloseCircle } from 'react-icons/ai'
 import { EditStatusAluguel } from '../../../controller/reqEditStatusAluguel.js'
+import { ToastContainer } from "react-toastify";
 
 export const EditCardForm = ({idAluguel, idCarro}) => {
     
@@ -18,6 +19,17 @@ export const EditCardForm = ({idAluguel, idCarro}) => {
                     <AiFillCloseCircle />
                 </div>
            </div>
+           <ToastContainer
+                position="bottom-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
        </C.ContainerEditCard>
     )
 }

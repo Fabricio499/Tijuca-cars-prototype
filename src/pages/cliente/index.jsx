@@ -11,15 +11,16 @@ import { meuAluguel } from '../../controller/reqMeuAluguel'
 
 export const Cliente = () => {
     
+    // --> Buscar e setar alugueis do usuario especifico
     const [meusAlugueis, setMeusAlugueis] = useState('')
-
-    async function buscarMeusAlugueis(){
-        const meuID = localStorage.getItem('UserID')
-        const meusAlugueisGet = await meuAluguel(meuID)
-        setMeusAlugueis(meusAlugueisGet)
-        console.log(meusAlugueis)
-    }
-    buscarMeusAlugueis();
+    useEffect(()=>{
+        async function buscarMeusAlugueis(){
+            const meuID = localStorage.getItem('UserID')
+            const meusAlugueisGet = await meuAluguel(meuID)
+            setMeusAlugueis(meusAlugueisGet)
+        }
+        buscarMeusAlugueis();
+    }, [])
 
 
     const [openModal, setOpenModal] = useState(false)

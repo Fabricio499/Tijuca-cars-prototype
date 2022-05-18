@@ -2,19 +2,44 @@ import * as C from './styles'
 import { useEffect, useState } from 'react'
 
 import { Navbar } from '../../Components/Navbar'
-import { ButtonSubmit } from '../../Components/Form/buttonSubmit'
-
-// import { CardCliente } from '../../Components/Cards/CardCliente/index.jsx'
 import { CardAlguelAdm } from '../../Components/Cards/CardAluguelAdm'
 import { CardCarros } from '../../Components/Cards/CardCarros'
 import Api from '../../services/api'
 import { getTodosAlugueis } from '../../controller/reqTodosAlugueis'
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 export const AdminPage = () => {
 
+    // --> Feedbacks de erros
+    const notifyErr = () =>
+    toast.error("Esse carro não pode ser removido!", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    });
+
+    const notifySucc = () =>
+    toast.success("Carro removido!", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    });
+
+
     const [atualUser, setAtualUser] = useState(undefined)
 
+    // --> Capturar informações do cliente e validar se pode acessar essa rota!
     useEffect(() => {
         const idUser = localStorage.getItem('UserID')
 
@@ -29,33 +54,41 @@ export const AdminPage = () => {
 
     }, [])
 
+    // --> Pegar todos os carros disponiveis
     const [cars, setCars] = useState([])
-
-    async function dataCar() {
-        const response = await Api.get('carros/carros')
-        console.log(response)
-        setCars(response.data.response)
-    }
-    dataCar();
+    useEffect(()=>{
+        async function dataCar() {
+            const response = await Api.get('carros')
+            console.log(response)
+            setCars(response.data.response)
+        }
+        dataCar();
+    },[])
 
     // --> Remover Carros 
     function removeCarro(idCarro) {
         Api.delete(`carros/removeCarro/${idCarro}`).then(({ data }) => {
             setCars(cars.filter((cars) => cars.idCarro !== idCarro))
+            notifySucc()
             //remove a consulta de acordo com o id
         })
             .catch((error) => {
                 console.log('deu errro aki', error);
+                notifyErr()
             })
     }
 
     const [todosAlugueis, setTodosAlugueis] = useState('')
 
-    async function getAlugueis() {
-        const response = await getTodosAlugueis()
-        setTodosAlugueis(response.data.response)
-    }
-    getAlugueis()
+    // --> Pegar todos os alugueis, independente do status
+    useEffect(()=>{
+        async function getAlugueis() {
+            const response = await getTodosAlugueis()
+            setTodosAlugueis(response.data.response)
+        }
+        getAlugueis()
+
+    }, [])
 
 
     return (
@@ -107,6 +140,17 @@ export const AdminPage = () => {
 
                 </div>
             </div>
+            <ToastContainer
+                position="bottom-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
         </C.ContainerAdminPage>
     )
 }

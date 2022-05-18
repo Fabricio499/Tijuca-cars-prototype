@@ -1,7 +1,7 @@
 import * as C from './styles'
 import { AiFillCheckCircle, AiFillCloseCircle } from 'react-icons/ai'
 import { getSingleCar } from '../../../controller/reqSingleCar'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export const CardCliente = ({
     idAluguel,
@@ -13,16 +13,18 @@ export const CardCliente = ({
     valorAluguel
 }) => {
 
+    // --> Buscar e setar o nome do carro de acordo com cada aluguel
     const [nameCar, setNameCar] = useState('')
-
-    async function getCar() {
-        const responseCar = await getSingleCar(idCarro)
-        setNameCar(responseCar.data.response[0].modelo)
-    }
-    getCar()
+    useEffect(()=>{
+        async function getCar() {
+            const responseCar = await getSingleCar(idCarro)
+            setNameCar(responseCar.data.response[0].modelo)
+        }
+        getCar()
+    }, [])
 
     return (
-        <C.CardContainer>
+        <C.CardContainer status={status}>
             <header>
                 <h2>{nameCar}</h2>
                 {status == 0 ? 

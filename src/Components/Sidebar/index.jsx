@@ -5,13 +5,12 @@ import { BiLogOut } from 'react-icons/bi'
 import { AiFillCar } from 'react-icons/ai'
 import { RiAdminFill } from 'react-icons/ri'
 import Modal from 'react-modal'
-import SidebarItem from '../SidebarItem'
 import { ModalNovoCliente } from '../modals/ModalNovoCliente'
 import { useLocation } from 'react-router-dom'
-import { ButtonSubmit } from '../Form/buttonSubmit';
 import { ModalNovoCarro } from '../modals/ModalNovoCarro';
 
-import { useHistory } from 'react-router-dom'
+import {VscLiveShare } from 'react-icons/vsc'
+
 import Api from '../../services/api';
 
 const Sidebar = ({ active }) => {
@@ -44,6 +43,10 @@ const Sidebar = ({ active }) => {
         window.location.href='/admin'
     }
 
+    const irCliente = () => {
+        window.location.href='/cliente'
+    }
+
     useEffect(() => {
         const idUser = localStorage.getItem('UserID')
 
@@ -66,9 +69,6 @@ const Sidebar = ({ active }) => {
             <Content>
                 {rotaAtual === '/cliente' ? (
                     <>
-                        <button onClick={handleLogout} className='btn-modal'>
-                            <BiLogOut /> Logout
-                        </button>
                         {blockAdmin == true ?
                             ''
                         :
@@ -76,11 +76,15 @@ const Sidebar = ({ active }) => {
                             <RiAdminFill /> Admin
                             </button>
                         }
-                        
+                        <button onClick={handleLogout} className='btn-modal'>
+                            <BiLogOut /> Logout
+                        </button>
                     </>
                 ) : (
                     <>
-
+                        <button className='btn-modal' onClick={irCliente}>
+                        <VscLiveShare />Cliente
+                        </button>
                         <button className='btn-modal' onClick={abrirModalCliente} ><FaUserAlt />Adicionar Cliente
 
                         </button>

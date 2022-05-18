@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const CardAlguelAdmContainer = styled.div`
     display: flex;
     flex-direction: column;
-    width: 250px;
+    width: 320px;
     height: 240px;
     color: #f6f6f6;
     font-family: roboto;
@@ -13,18 +13,22 @@ export const CardAlguelAdmContainer = styled.div`
 
     font-size: 1rem;
 
+    filter: ${props=>props.status == 0 ? '' : 'brightness(90%)'};
+
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
     transition: all ease-in .4s;
+    padding: 0.5rem;
 
     .header-card {
-        margin: 1rem 0;
+        /* margin: 1rem 0; */
         display: flex;
-        align-items: center;
-        justify-content: space-between;
+        flex-direction: column;
+        justify-content: flex-start;
 
         .info-client {
-            margin-left: .5rem;
+            width: 100%;
             display: flex;
+            border-bottom: 1px solid #F9A826;
         }
 
         p {
@@ -34,8 +38,10 @@ export const CardAlguelAdmContainer = styled.div`
 
         .edit {
             display: flex;
-            margin-right: .5rem;
-            height: 1rem;
+            justify-content: end;
+            width: 1rem;
+            margin-left: -.3rem;
+            padding: .8rem;
             cursor: pointer;
             transition: all ease .2s;
 
