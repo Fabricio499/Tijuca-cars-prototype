@@ -31,8 +31,8 @@ export const ContainerAdminPage = styled.div`
             margin-top: 1rem;
             display: flex;
             
-            justify-content: space-around;
-            align-items: center;
+            justify-content: space-between;
+            align-items: flex-start;
             flex-wrap: wrap;
 
             gap: 20px;
@@ -41,7 +41,7 @@ export const ContainerAdminPage = styled.div`
 
     .all-cars{
         width: 80%;
-        margin: auto;
+        margin: 1rem auto;
 
         .card-div {
             margin-top: 1rem;

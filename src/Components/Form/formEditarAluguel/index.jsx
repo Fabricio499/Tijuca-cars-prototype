@@ -1,30 +1,24 @@
 import React from "react"
+import { ToastContainer } from "react-toastify"
 import { useState, useEffect } from 'react'
-
-import { ContainerModalCliente } from './styled'
 import { ButtonSubmit } from "../buttonSubmit"
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'
-
+import * as C from './styles'
+import Api from "../../../services/api"
 import moment from "moment"
 
-import Api from '../../../services/api'
+export const FormEditarAluguel = ({idCarro, idAluguel}) => {
 
-export const FormCliente = () => {
-
-    const [cars, setCars] = useState([])
-    const [idCarro, setIdCarro] = useState('')
     const [qtdeDiasAlugados, setQtdeDiasAlugados] = useState(0)
     const [dataRetirada, setDataRetirada] = useState('')
     const [dataEntrega, setDataEntrega] = useState('')
     const [valorAluguel, setValorAluguel] = useState(0)
     const [dataReserva, setDataReserva] = useState('')
     const [infoCar, setInfoCar] = useState(0)
-    const statusAluguel = 0;
+    const [status, setStatus] = useState(0);
     const [idCliente, setIdCliente] = useState(undefined)
 
-    const notifySucc = () => toast.success('Você tem um novo Aluguel!', {
+    const notifySucc = () => toast.success('Aluguel Alterado!', {
         position: "bottom-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -48,22 +42,12 @@ export const FormCliente = () => {
         const buscarId = localStorage.getItem('UserID')
         setIdCliente(buscarId)
     }, [])
-
-
-    useEffect(() => {
-        async function dataCar() {
-            const response = await Api.get('carros/carrosDisponiveis')
-            setCars(response.data.response)
-        }
-        dataCar();
-    }, [])
-
     
     useEffect(()=>{
         async function getSingleCar() {
             const responseInfo = await Api.get(`carros/${idCarro}`)
             setInfoCar(responseInfo.data.response[0])
-            console.log(responseInfo.data)
+            console.log(responseInfo.data.response[0].modelo)
         }
         getSingleCar()
         setValorAluguel(0)
@@ -76,41 +60,39 @@ export const FormCliente = () => {
     }, [qtdeDiasAlugados])
     
     function dataDaReserva() {
-        const dataMomentoReserva = moment(new Date(dataRetirada)).format('YYYY-MM-DD')
+        const dataMomentoReserva = moment().format('YYYY-MM-DD')
         setDataReserva(dataMomentoReserva)
         onCalcularData(dataReserva, qtdeDiasAlugados)
 
         // console.log(dataReserva)
     }
     function onCalcularData(data, dias) {
-        const dataDaEntrega = moment().add(dias, 'days')
+        console.log(dataReserva)
+        const dataDaEntrega = moment(new Date(dataRetirada)).add(dias, 'days')
         const newDataEntrega = dataDaEntrega.format('YYYY-MM-DD')
         setDataEntrega(newDataEntrega)
         // console.log(qtdeDiasAlugados)
     }
 
-    async function novoAluguel(
-        idCarro,
-        idCliente,
+    async function editarAluguel(
         dataReserva,
         dataRetirada,
         dataEntrega,
         qtdeDiasAlugados,
-        valorAluguel,
-        statusAluguel
+        status,
+        idAluguel
     ) {
         try {
             if (valorAluguel > 0) {
-                const response = await Api.post('alugueis/novoAluguel', {
-                    idCarro: idCarro,
-                    idCliente: idCliente,
+                const response = await Api.patch('alugueis/alteraAluguel', {
                     dataReserva: dataReserva,
                     dataRetirada: dataRetirada,
                     dataEntrega: dataEntrega,
                     qtdeDiasAlugados: qtdeDiasAlugados,
-                    valorAluguel: valorAluguel,
-                    statusAluguel: statusAluguel
+                    status: status,
+                    idAluguel: idAluguel
                 })
+                console.log(response)
                 notifySucc()
 
             }
@@ -121,25 +103,17 @@ export const FormCliente = () => {
     }
 
     return (
-        <ContainerModalCliente>
+        <C.ContainerFormEdit>
             <div className='form-model-cliente'>
                 <div className='campo-input'>
                     <label>Modelo do Veículo</label>
                     <select
-                        onChange={e => setIdCarro(e.target.value)}
                         defaultValue={'DEFAULT'}
+                        disabled
                         >
                         <option value="DEFAULT" selected>
-                            selecione um modelo
+                            {infoCar.modelo}
                         </option>
-                        {cars.length > 0 &&
-                            cars.map((cars) => (
-                                <option
-                                    key={cars.idCarro}
-                                    value={cars.idCarro}
-                                >{cars.modelo}  -  {cars.placa}</option>
-                            ))
-                        }
                     </select>
                 </div>
 
@@ -170,16 +144,14 @@ export const FormCliente = () => {
             </div>
 
             <div className='submit-button-alugar'>
-                <ButtonSubmit text="Alugar" onClick={() => novoAluguel
+                <ButtonSubmit text="Modificar" onClick={() => editarAluguel
                     (
-                        idCarro,
-                        idCliente,
                         dataReserva,
                         dataRetirada,
                         dataEntrega,
                         qtdeDiasAlugados,
-                        valorAluguel,
-                        statusAluguel
+                        status,
+                        idAluguel
                     )}
                 />
             </div>
@@ -194,6 +166,6 @@ export const FormCliente = () => {
                 draggable
                 pauseOnHover
             />
-        </ContainerModalCliente>
+        </C.ContainerFormEdit>
     )
 }

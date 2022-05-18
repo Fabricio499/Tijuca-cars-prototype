@@ -13,11 +13,10 @@ export const CardAlguelAdmContainer = styled.div`
 
     font-size: 1rem;
 
-    filter: ${props=>props.status == 0 ? '' : 'brightness(90%)'};
-
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
     transition: all ease-in .4s;
     padding: 0.5rem;
+
 
     .header-card {
         /* margin: 1rem 0; */

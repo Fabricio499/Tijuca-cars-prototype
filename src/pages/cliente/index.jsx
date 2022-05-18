@@ -17,6 +17,7 @@ export const Cliente = () => {
         async function buscarMeusAlugueis(){
             const meuID = localStorage.getItem('UserID')
             const meusAlugueisGet = await meuAluguel(meuID)
+            console.log(meusAlugueisGet)
             setMeusAlugueis(meusAlugueisGet)
         }
         buscarMeusAlugueis();
