@@ -40,7 +40,7 @@
 ### # Banco de dados MySQL utilizando phpMyAdmin 
 
 ## Como utilizar nossa Aplicação?
-### Requisitos: <a href='https://nodejs.org/en/'>NodeJS</a>, <a href='https://www.youtube.com/watch?v=zpssr3u1EO8'>MySQL</a> e uma <a href='https://code.visualstudio.com'>IDE</a>
+#### Requisitos: <a href='https://nodejs.org/en/'>NodeJS</a>, <a href='https://www.youtube.com/watch?v=zpssr3u1EO8'>MySQL</a> e uma <a href='https://code.visualstudio.com'>IDE</a>
 <br>
 
 1. Executa 'NPM I' ou 'YARN' no terminal, tanto no back-end quanto no front-end para Instalação das dependencias necessárias
