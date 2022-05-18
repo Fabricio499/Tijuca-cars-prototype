@@ -1,6 +1,6 @@
 # Tijuca Cars 🚘
 
-### Status: Versão experimental ⚠ 
+> Status: Versão experimental ⚠ 
 ### Linguagens e ferramentas:
 <div>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"  width='30' />
