@@ -10,6 +10,7 @@ import { formataData } from '../../controller/formData'
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ReqDesativarCarro } from '../../controller/reqDesableCar'
 
 
 export const AdminPage = () => {
@@ -79,6 +80,11 @@ export const AdminPage = () => {
             })
     }
 
+    // --> Desativar o Carro
+    function desativaCarro(idCarro) {
+        const response = ReqDesativarCarro(idCarro)
+    }
+
     const [todosAlugueis, setTodosAlugueis] = useState('')
 
     // --> Pegar todos os alugueis, independente do status
@@ -135,6 +141,7 @@ export const AdminPage = () => {
                                 status={cars.status}
                                 valor={cars.valorDiaAluguel}
                                 handleRemove={removeCarro}
+                                handleDesabled={desativaCarro}
                             />
 
                         ))

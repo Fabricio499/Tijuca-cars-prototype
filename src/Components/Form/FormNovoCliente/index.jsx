@@ -95,11 +95,11 @@ export const FormNovoCliente = () => {
                 </div>
                 <div className='campo-info'>
                     <label>CNH:</label>
-                    <input type="text" value={cnh} onChange={e=>setCnh(e.target.value)} />
+                    <input type="text" value={cnh} onChange={e=>setCnh(e.target.value)} maxLength='11' />
                 </div>
                 <div className='campo-info'>
                     <label>Telefone:</label>
-                    <input type="text" value={telefone} onChange={e=>setTelefone(e.target.value)} />
+                    <input type="text" value={telefone} onChange={e=>setTelefone(e.target.value)} maxLength='9' />
                 </div>
                 <div className='campo-info'>
                     <label>E-Mail:</label>

@@ -51,52 +51,52 @@ export const FormNovoCarro = ({ closeModalCarro }) => {
         } else {
             notifyErr()
         }
-}
-
-
-
-
-
-        return (
-            <C.FormNovoCarroContainer>
-                <div className='form-newCar'>
-                    <div className='campo-info'>
-                        <label>Modelo:</label>
-                        <input type="text" value={modelo} onChange={e => setModelo(e.target.value)} />
-                    </div>
-                    <div className='campo-info'>
-                        <label>Placa:</label>
-                        <input type="text" value={placa} onChange={e => setPlaca(e.target.value)} />
-                    </div>
-                    <div className='campo-info'>
-                        <label>Ano:</label>
-                        <input type="text" value={ano} onChange={e => setAno(e.target.value)} />
-                    </div>
-                    <div className='campo-info'>
-                        <label>Cor:</label>
-                        <input type="text" value={cor} onChange={e => setCor(e.target.value)} />
-                    </div>
-                    <div className='campo-info'>
-                        <label>Valor do Aluguel:</label>
-                        <input type="text" value={valor} onChange={e => setValor(e.target.value)} />
-                    </div>
-                </div>
-                <div className='input-adicionar'>
-                    <ButtonSubmit text="Adicionar" onClick={() => handleNewCar(modelo, placa, ano, cor, valor, status)} />
-                </div>
-                <div>
-                    <ToastContainer
-                        position="bottom-right"
-                        autoClose={5000}
-                        hideProgressBar={false}
-                        newestOnTop={false}
-                        closeOnClick
-                        rtl={false}
-                        pauseOnFocusLoss
-                        draggable
-                        pauseOnHover
-                    />
-                </div>
-            </C.FormNovoCarroContainer>
-        )
     }
+
+
+
+
+
+    return (
+        <C.FormNovoCarroContainer>
+            <div className='form-newCar'>
+                <div className='campo-info'>
+                    <label>Modelo:</label>
+                    <input type="text" value={modelo} onChange={e => setModelo(e.target.value)} />
+                </div>
+                <div className='campo-info'>
+                    <label>Placa:</label>
+                    <input type="text" value={placa} onChange={e => setPlaca(e.target.value)} maxLength='7' />
+                </div>
+                <div className='campo-info'>
+                    <label>Ano:</label>
+                    <input type="text" value={ano} onChange={e => setAno(e.target.value)} />
+                </div>
+                <div className='campo-info'>
+                    <label>Cor:</label>
+                    <input type="text" value={cor} onChange={e => setCor(e.target.value)} />
+                </div>
+                <div className='campo-info'>
+                    <label>Valor do Aluguel:</label>
+                    <input type="text" value={valor} onChange={e => setValor(e.target.value)} />
+                </div>
+            </div>
+            <div className='input-adicionar'>
+                <ButtonSubmit text="Adicionar" onClick={() => handleNewCar(modelo, placa, ano, cor, valor, status)} />
+            </div>
+            <div>
+                <ToastContainer
+                    position="bottom-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                />
+            </div>
+        </C.FormNovoCarroContainer>
+    )
+}

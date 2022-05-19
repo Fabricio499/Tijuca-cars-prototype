@@ -31,7 +31,7 @@ export const ContainerAdminPage = styled.div`
             margin-top: 1rem;
             display: flex;
             
-            justify-content: space-between;
+            justify-content: space-around;
             align-items: flex-start;
             flex-wrap: wrap;
 

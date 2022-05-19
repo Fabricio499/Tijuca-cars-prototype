@@ -8,6 +8,7 @@ import Modal from 'react-modal/lib/components/Modal'
 import Api from '../../services/api'
 import { meuAluguel } from '../../controller/reqMeuAluguel'
 import { formataData } from '../../controller/formData'
+import { NoContent } from '../../Components/NoContent'
 
 
 export const Cliente = () => {
@@ -85,7 +86,7 @@ export const Cliente = () => {
                             />
                         ))
                         :
-                        <h1>TESTE</h1>
+                        <NoContent />
                     }
                 </div>
             </div>

@@ -9,12 +9,18 @@ export const CardCarros = ({
     placa,
     status,
     valor,
-    handleRemove
+    handleRemove,
+    handleDesabled
 }) => {
 
     const remove = (e) => {
         handleRemove(idCarro)
     }
+
+    const desativar = (e) => {
+        handleDesabled(idCarro)
+    }
+
     return (
         <C.ContainerCardCarros>
             <header>
@@ -41,9 +47,14 @@ export const CardCarros = ({
                     <span>Status:</span>
                     <h2>{status}</h2>
                 </div>
+                <div className='btns-car'>
+
                 <ButtonSubmit text="Excluir" className='btnExcluir' onClick={remove} />
+                <ButtonSubmit text="desativar" className='btnExcluir' 
+                onClick={desativar}
+                />
 
-
+                </div>
 
             </div>
         </C.ContainerCardCarros>

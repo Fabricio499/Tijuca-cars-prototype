@@ -82,11 +82,15 @@ export const CardAlguelAdm = ({
                 <div className='info-client'>
                     <span>Cliente:</span><p>{userName}</p>
                 </div>
-                <div className='edit' onClick={abrirEdit}>
-                    {status == 0 &&
-                        <AiOutlineEdit />
-                    }
-                </div>
+                {status == 0 ? 
+                    <div className='edit' onClick={abrirEdit}>
+                            <AiOutlineEdit />
+                    </div>
+                :
+                    <div className='edit' style={{cursor: 'not-allowed'}}>
+                            <AiOutlineEdit style={{filter: 'brightness(60%)'}}/>
+                    </div>
+                }
             </div>
             <div className='info-card'>
                 <div className='single-info'>

@@ -10,7 +10,6 @@ export const Conteiner = styled.div`
     padding: 40px 55px;
     box-shadow: 0 0 60px rgba(0, 0, 0, 0.08);
     border-radius: 20px;
-
 `
 export const Header = styled.div`
 display: flex;
@@ -58,4 +57,5 @@ export const Overlay = styled.div`
     justify-content: center;
     align-items: center;
     background-color: rgba(13, 71, 161, .5);
+    
 `

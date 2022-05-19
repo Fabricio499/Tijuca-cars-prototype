@@ -39,14 +39,18 @@ export const ContainerCardCarros = styled.div`
         font-size: 15px
     }
 
-    .btnExcluir{
-        flex: 1;
-        height: 2rem;
-        margin: 1.5rem auto;
-        
+    .btns-car {
         display: flex;
         justify-content: center;
-        align-items: center;
+        gap: .8rem;
+
+        .btnExcluir{
+            height: 2rem;
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     }
 
 `
