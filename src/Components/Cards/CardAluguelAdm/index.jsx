@@ -73,6 +73,7 @@ export const CardAlguelAdm = ({
                 <ModalEdit
                     idAluguel={idAluguel}
                     idCarro={idCarro}
+                    idCliente={idCliente}
                     closeModal={fecharEdit}
                 />
             </Modal>
@@ -82,7 +83,9 @@ export const CardAlguelAdm = ({
                     <span>Cliente:</span><p>{userName}</p>
                 </div>
                 <div className='edit' onClick={abrirEdit}>
-                    <AiOutlineEdit />
+                    {status == 0 &&
+                        <AiOutlineEdit />
+                    }
                 </div>
             </div>
             <div className='info-card'>

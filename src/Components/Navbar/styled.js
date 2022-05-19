@@ -5,6 +5,7 @@ export const Container = styled.div`
     height: 70px;
     display: flex;
     background-color: #0D47A1;
+    z-index: 2;
     
 
     > svg {

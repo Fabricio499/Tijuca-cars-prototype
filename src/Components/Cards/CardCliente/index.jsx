@@ -35,6 +35,13 @@ export const CardCliente = ({
         setOpenModal(true)
     }
     
+    console.log(idAluguel,
+        idCarro,
+        dataReserva,
+        dataRetirada,
+        dataEntrega,
+        status,
+        valorAluguel)
 
     return (
         <C.CardContainer status={status}>
@@ -48,7 +55,9 @@ export const CardCliente = ({
                     }
                 </div>
                 <div className='edit' onClick={abriModal}>
-                    <MdModeEdit />
+                    {status == 0 &&
+                        <MdModeEdit />
+                    }
                 </div>
             </header>
             <div className='informacoes'>

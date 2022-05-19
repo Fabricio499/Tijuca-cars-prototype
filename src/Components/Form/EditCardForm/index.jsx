@@ -3,10 +3,10 @@ import { AiFillCloseCircle } from 'react-icons/ai'
 import { EditStatusAluguel } from '../../../controller/reqEditStatusAluguel.js'
 import { ToastContainer } from "react-toastify";
 
-export const EditCardForm = ({idAluguel, idCarro}) => {
+export const EditCardForm = ({idAluguel, idCarro, idCliente}) => {
     
     async function EditStatus(){
-        const response = EditStatusAluguel(idAluguel, idCarro)
+        const response = EditStatusAluguel(idAluguel, idCarro, idCliente)
         console.log(response)
     }
 

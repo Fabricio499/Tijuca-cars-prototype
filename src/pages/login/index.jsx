@@ -23,12 +23,41 @@ export const Login = () => {
 
     }
 
+    const notifyErrSenha = () =>
+    toast.error("Campo de senha vazia!", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+  });
+
+  const notifyErrEmail = () =>
+  toast.error("Campo de email vazia!", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+});
+
 
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
 
     async function fazerLogin(){
-        const response = await LoginCliente(email, senha)
+        if(senha.length == 0) {
+            notifyErrSenha()
+        }
+        if(email.length == 0) {
+            notifyErrEmail()
+        }
+        if(email.length > 0 && senha.length > 0) {
+            const response = await LoginCliente(email, senha)
         localStorage.setItem('UserID', response.data.idCliente)
         const token = response.data.token
         localStorage.setItem('Token', token)
@@ -37,7 +66,9 @@ export const Login = () => {
         if(response.data.token) {
             window.location.href='/cliente'
             return true
-        }         
+        }       
+        }
+          
     }
 
     

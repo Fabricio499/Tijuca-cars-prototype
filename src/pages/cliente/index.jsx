@@ -7,6 +7,7 @@ import { FormModalCliente } from '../../Components/Form/FormModalCliente'
 import Modal from 'react-modal/lib/components/Modal'
 import Api from '../../services/api'
 import { meuAluguel } from '../../controller/reqMeuAluguel'
+import { formataData } from '../../controller/formData'
 
 
 export const Cliente = () => {
@@ -70,19 +71,22 @@ export const Cliente = () => {
                     </Modal> 
                 </div>
                 <div className='cards'>
-                    {meusAlugueis &&
+                    {meusAlugueis.length > 0 ?
                         meusAlugueis.map((aluguel)=>(
                             <CardCliente 
                                 key={aluguel.idAluguel}
                                 idCarro={aluguel.idCarro}
                                 idAluguel={aluguel.idAluguel}
-                                dataReserva={aluguel.dataReserva}
-                                dataRetirada={aluguel.dataRetirada}
-                                dataEntrega={aluguel.dataEntrega}
+                                dataReserva={formataData(new Date(aluguel.dataReserva))}
+                                dataRetirada={formataData(new Date(aluguel.dataRetirada))}
+                                dataEntrega={formataData(new Date(aluguel.dataEntrega))}
                                 valorAluguel={aluguel.valorAluguel}
                                 status={aluguel.statusAluguel}
                             />
-                        ))}
+                        ))
+                        :
+                        <h1>TESTE</h1>
+                    }
                 </div>
             </div>
         </C.ContainerCliente>

@@ -17,7 +17,6 @@ export const CardContainer = styled.div`
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
     transition: all ease-in .4s;
 
-    z-index: -1;
 
     header {
         display: flex;

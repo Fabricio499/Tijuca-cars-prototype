@@ -6,6 +6,7 @@ import { CardAlguelAdm } from '../../Components/Cards/CardAluguelAdm'
 import { CardCarros } from '../../Components/Cards/CardCarros'
 import Api from '../../services/api'
 import { getTodosAlugueis } from '../../controller/reqTodosAlugueis'
+import { formataData } from '../../controller/formData'
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -108,10 +109,11 @@ export const AdminPage = () => {
                                 idAluguel={tdsAlugueis.idAluguel}
                                 idCarro={tdsAlugueis.idCarro}
                                 idCliente={tdsAlugueis.idCliente}
-                                reserva={tdsAlugueis.dataReserva}
-                                retirada={tdsAlugueis.dataRetirada}
-                                entrega={tdsAlugueis.dataEntrega}
+                                reserva={formataData(new Date(tdsAlugueis.dataReserva))}
+                                retirada={formataData(new Date(tdsAlugueis.dataRetirada))}
+                                entrega={formataData(new Date(tdsAlugueis.dataEntrega))}
                                 valor={tdsAlugueis.valorAluguel}
+                                qtde={tdsAlugueis.qtdeDiasAlugados}
                                 status={tdsAlugueis.statusAluguel}
                             />
                         ))

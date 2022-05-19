@@ -24,10 +24,10 @@ const notifySucc = () =>
     progress: undefined,
   });
 
-export async function EditStatusAluguel(idAluguel, idCarro) {
+export async function EditStatusAluguel(idAluguel, idCarro, idCliente) {
   try {
     const response = await Api.patch(
-      `alugueis/removeAluguel/${idAluguel}/${idCarro}`
+      `alugueis/removeAluguel/${idAluguel}/${idCarro}/${idCliente}`
     );
     notifySucc();
     return response;

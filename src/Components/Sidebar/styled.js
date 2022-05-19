@@ -10,6 +10,7 @@ export const Container = styled.div`
     left: ${props => props.sidebar ? '0' : '-100%'};
     animation: showSidebar .4s;
     box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    z-index: 1;
     
     > svg{
         position:fixed;
