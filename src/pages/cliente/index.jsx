@@ -70,7 +70,7 @@ export const Cliente = () => {
                     </Modal> 
                 </div>
                 <div className='cards'>
-                    {meusAlugueis.length > 0 &&
+                    {meusAlugueis &&
                         meusAlugueis.map((aluguel)=>(
                             <CardCliente 
                                 key={aluguel.idAluguel}
