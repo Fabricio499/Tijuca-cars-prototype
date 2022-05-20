@@ -9,15 +9,10 @@ import {
 import { AdminPage } from './pages/AdminPage'
 import {Login} from './pages/login/index'
 import {Cliente} from './pages/cliente'
+import { NoContent } from './pages/NoContent';
 export const App = () => {
   
   return (
-    <Router>
-      <Switch>
-        <Route  path="/" exact component={Login} />
-        <Route  path="/cliente" component={Cliente} />
-        <Route  path="/admin" component={AdminPage} />
-      </Switch>
-    </Router>
+    <NoContent />
   )
 }
