@@ -31,6 +31,9 @@ const SidebarInfo = ({ active }) => {
                         <button className='btn-modal'>
                             <a  className='btn-a' href="#retirada">O que precisa levar na retirada?</a>
                         </button>
+                        <button className='btn-modal'>
+                            <a  className='btn-a' href="/LadinPage">Continuar</a>
+                        </button>
                         
                 
                       </div>    

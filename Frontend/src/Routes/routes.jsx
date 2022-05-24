@@ -32,9 +32,9 @@ export const Routes = () => {
     return (
         <BrowserRouter>
             <Switch>
-                <Route exact path='/' component={Login} />
+                <Route exact path='/Login' component={Login} />
                 <Route exact path='/LadinPage' component={LadingPage} />
-                <Route exact path='/InfoPage' component={InfoPage} />
+                <Route exact path='/' component={InfoPage} />
                 <PrivateRoute path='/cliente' component={Cliente} />
                 <PrivateRoute path='/admin' component={AdminPage} />
             </Switch>

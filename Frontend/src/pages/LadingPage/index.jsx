@@ -3,7 +3,7 @@ import img from '../../assets/image/logo.svg';
 import img1 from '../../assets/image/car1.svg';
 import img2 from '../../assets/image/car2.svg';
 import img3 from '../../assets/image/car3.svg';
-
+import {Link} from 'react-router-dom'
 
 
 export const LadingPage = () => {
@@ -38,7 +38,7 @@ export const LadingPage = () => {
                 <div className='login'>
                     <ul className='list'>
                         <li>
-                            <a href='' className='link'>Faça login</a>
+                            <a href="/login" className='link'>Faça login</a>
                         </li>
                     </ul>
                 </div>
