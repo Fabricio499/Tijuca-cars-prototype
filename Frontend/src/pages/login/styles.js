@@ -8,9 +8,9 @@ export const ContainerLogin = styled.div`
     font-family: 'Roboto', sans-serif;
 
     .right {
-        background: #1E3F7F;
+            background: #1E3F7F;
         width: 60%;
-
+ 
         .content-right {
             background: rgba(0, 0, 0, 0.5);
             height: 93%;
