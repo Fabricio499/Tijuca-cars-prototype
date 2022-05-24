@@ -24,54 +24,54 @@ export const Login = () => {
     }
 
     const notifyErrSenha = () =>
-    toast.error("Campo de senha vazia!", {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-  });
+        toast.error("Campo de senha vazia!", {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
 
-  const notifyErrEmail = () =>
-  toast.error("Campo de email vazia!", {
-      position: "bottom-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-});
+    const notifyErrEmail = () =>
+        toast.error("Campo de email vazia!", {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
 
 
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
 
-    async function fazerLogin(){
-        if(senha.length == 0) {
+    async function fazerLogin() {
+        if (senha.length == 0) {
             notifyErrSenha()
         }
-        if(email.length == 0) {
+        if (email.length == 0) {
             notifyErrEmail()
         }
-        if(email.length > 0 && senha.length > 0) {
+        if (email.length > 0 && senha.length > 0) {
             const response = await LoginCliente(email, senha)
-        localStorage.setItem('UserID', response.data.idCliente)
-        const token = response.data.token
-        localStorage.setItem('Token', token)
-        
-        
-        if(response.data.token) {
-            window.location.href='/cliente'
-            return true
-        }       
+            localStorage.setItem('UserID', response.data.idCliente)
+            const token = response.data.token
+            localStorage.setItem('Token', token)
+
+
+            if (response.data.token) {
+                window.location.href = '/cliente'
+                return true
+            }
         }
-          
+
     }
 
-    
+
 
     return (
         <C.ContainerLogin>
@@ -92,12 +92,12 @@ export const Login = () => {
                             value={email}
                             onChange={e => setEmail(e.target.value)} />
                         <label>Senha</label>
-                        <input 
+                        <input
                             type={view === false ? 'password' : 'text'}
                             className='input-login'
                             value={senha}
-                            onChange={e=>setSenha(e.target.value)}
-                            />
+                            onChange={e => setSenha(e.target.value)}
+                        />
                         <div onClick={handleVisiblePassword} className="iconView">
                             {
                                 view
@@ -110,7 +110,7 @@ export const Login = () => {
 
                     </div>
                 </div>
-                <button className='btn-enviar' onClick={()=>fazerLogin()}>LOGAR</button>
+                <button className='btn-enviar' onClick={() => fazerLogin()}>LOGAR</button>
             </div>
             <ToastContainer
                 position="bottom-right"
