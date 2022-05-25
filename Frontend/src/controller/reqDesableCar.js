@@ -27,7 +27,6 @@ const notifyErr = () =>
 export async function ReqDesativarCarro(idCarro){
     try {
         const response = await Api.patch(`carros/alteraStatus/${idCarro}`)
-        console.log(response)
         notifySucc()
     } catch (error) {
         notifyErr()

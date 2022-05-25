@@ -1,16 +1,16 @@
-import './styles.css'
 import img from '../../assets/image/logo.svg';
 import img1 from '../../assets/image/car1.svg';
 import img2 from '../../assets/image/car2.svg';
 import img3 from '../../assets/image/car3.svg';
-import {Link} from 'react-router-dom'
+import {StyledLaginPage} from './styles'
+
 
 
 export const LadingPage = () => {
 
     return (
+    <StyledLaginPage>
     <div>
-        
             <div className='fundo-branco'>
                 <div className='box-cabecalho'>
                     <div className='div-menor'>
@@ -54,8 +54,7 @@ export const LadingPage = () => {
                     </div>
                 </div>
             </div>
-        
     </div> 
-       
+    </StyledLaginPage>       
     )
 }

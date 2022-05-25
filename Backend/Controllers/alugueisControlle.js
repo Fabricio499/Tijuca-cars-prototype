@@ -86,64 +86,70 @@ exports.novoAluguel = (req, res, next) => {
                             mensagem: 'Você não pode executar essa operação'
                         })
                     } else {
-                        if (error) { return res.status(500).send({ error: error }) };
-                        conn.query(
-                            `INSERT INTO alugueis (
-                        dataReserva, 
-                        dataRetirada, 
-                        dataEntrega, 
-                        qtdeDiasAlugados,
-                        valorAluguel,
-                        idCarro,
-                        idCliente, 
-                        statusAluguel
-                            ) 
-                        VALUES (?,?,?,?,?,?,?,?)   
-                        `,
-                            [
-                                req.body.dataReserva,
-                                req.body.dataRetirada,
-                                req.body.dataEntrega,
-                                req.body.qtdeDiasAlugados,
-                                req.body.valorAluguel,
-                                req.body.idCarro,
-                                req.body.idCliente,
-                                req.body.statusAluguel
-                            ],
-
-                            (error, result) => {
-                                conn.release();
-
-                                if (error) { res.status(500).send({ error: error, response: null }) }
-                                const response = {
-                                    mensagem: 'Novo aluguel adicionado',
-                                    clienteCriado: {
-                                        dataReserva: req.body.dataReserva,
-                                        dataRetirada: req.body.dataRetirada,
-                                        dataEntrega: req.body.dataEntrega,
-                                        qtdeDiasAlugados: req.body.qtdeDiasAlugados,
-                                        statusAlugeul: req.body.statusAluguel
-                                    }
-                                }
-
-                                res.status(201).send(response)
-                            })
-
-                        conn.query(
-                            ` UPDATE clientes 
-                            SET statusCliente = 1
-                            WHERE idCliente = ? 
+                        const dataAtual= new Date()
+                        const dataReirada = new Date(req.body.dataRetirada)
+                        if(dataAtual < dataReirada) {
+                            if (error) { return res.status(500).send({ error: error }) };
+                            conn.query(
+                                `INSERT INTO alugueis (
+                            dataReserva, 
+                            dataRetirada, 
+                            dataEntrega, 
+                            qtdeDiasAlugados,
+                            valorAluguel,
+                            idCarro,
+                            idCliente, 
+                            statusAluguel
+                                ) 
+                            VALUES (?,?,?,?,?,?,?,?)   
                             `,
-                            [req.body.idCliente])
-                        conn.release();
-
-                        conn.query(
-                            ` UPDATE carros
-                                SET statusCarro = 2
-                                WHERE idCarro = ?
+                                [
+                                    req.body.dataReserva,
+                                    req.body.dataRetirada,
+                                    req.body.dataEntrega,
+                                    req.body.qtdeDiasAlugados,
+                                    req.body.valorAluguel,
+                                    req.body.idCarro,
+                                    req.body.idCliente,
+                                    req.body.statusAluguel
+                                ],
+    
+                                (error, result) => {
+                                    conn.release();
+    
+                                    if (error) { res.status(500).send({ error: error, response: null }) }
+                                    const response = {
+                                        mensagem: 'Novo aluguel adicionado',
+                                        clienteCriado: {
+                                            dataReserva: req.body.dataReserva,
+                                            dataRetirada: req.body.dataRetirada,
+                                            dataEntrega: req.body.dataEntrega,
+                                            qtdeDiasAlugados: req.body.qtdeDiasAlugados,
+                                            statusAlugeul: req.body.statusAluguel
+                                        }
+                                    }
+    
+                                    res.status(201).send(response)
+                                })
+    
+                            conn.query(
+                                ` UPDATE clientes 
+                                SET statusCliente = 1
+                                WHERE idCliente = ? 
                                 `,
-                            [req.body.idCarro])
-                        conn.release();
+                                [req.body.idCliente])
+                            conn.release();
+    
+                            conn.query(
+                                ` UPDATE carros
+                                    SET statusCarro = 2
+                                    WHERE idCarro = ?
+                                    `,
+                                [req.body.idCarro])
+                            conn.release();
+                        }else{
+                            return res.status(203).send({ error: error , mensagem: 'Data invalida!'})
+                        }
                     }
                 })
         } catch (error) {
@@ -178,7 +184,7 @@ exports.alteraAluguel = (req, res, next) => {
                 if (error) { return res.status(500).send({ error: error }) }
                 const data = formataData(new Date(result[0].dataRetirada))
                 const dataHoje = formataData(new Date())
-                if (data >= dataHoje) {
+                if (data <= dataHoje) {
                     res.status(409).send({
                         mensagem: 'Voce não pode mais altera esse aluguel'
                     })

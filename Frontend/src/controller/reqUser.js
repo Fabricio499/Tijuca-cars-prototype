@@ -22,7 +22,6 @@ export async function LoginCliente(email, senha) {
     });
     return response;
   } catch (error) {
-    console.log(error);
     notifyErr();
   }
 }

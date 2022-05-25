@@ -7,7 +7,6 @@ export const EditCardForm = ({idAluguel, idCarro, idCliente}) => {
     
     async function EditStatus(){
         const response = EditStatusAluguel(idAluguel, idCarro, idCliente)
-        console.log(response)
     }
 
     return (

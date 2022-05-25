@@ -1,5 +1,5 @@
 export function formataData  (data) {
-    var dia = data.getDate();
+    var dia = data.getDate()+1;
     var mes = data.getMonth()+1;
     var ano = data.getFullYear();
 

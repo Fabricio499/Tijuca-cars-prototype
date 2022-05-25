@@ -1,5 +1,5 @@
 import React from "react"
-import { ToastContainer } from "react-toastify"
+import { ToastContainer, toast } from "react-toastify"
 import { useState, useEffect } from 'react'
 import { ButtonSubmit } from "../buttonSubmit"
 
@@ -7,7 +7,7 @@ import * as C from './styles'
 import Api from "../../../services/api"
 import moment from "moment"
 
-export const FormEditarAluguel = ({idCarro, idAluguel}) => {
+export const FormEditarAluguel = ({ idCarro, idAluguel }) => {
 
     const [qtdeDiasAlugados, setQtdeDiasAlugados] = useState(0)
     const [dataRetirada, setDataRetirada] = useState('')
@@ -28,51 +28,38 @@ export const FormEditarAluguel = ({idCarro, idAluguel}) => {
         progress: undefined,
     });;
 
-    const notifyErr = () => toast.error('Você não pode executar essa operação!', {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-    });
-
     useEffect(() => {
         const buscarId = localStorage.getItem('UserID')
         setIdCliente(buscarId)
     }, [])
-    
-    useEffect(()=>{
+
+    useEffect(() => {
         async function getSingleCar() {
             const responseInfo = await Api.get(`carros/${idCarro}`)
             setInfoCar(responseInfo.data.response[0])
-            console.log(responseInfo.data.response[0].modelo)
         }
         getSingleCar()
         setValorAluguel(0)
         setQtdeDiasAlugados(0)
     }, [idCarro])
-    
+
     useEffect(() => {
         dataDaReserva();
         setValorAluguel(infoCar.valorDiaAluguel * qtdeDiasAlugados)
     }, [qtdeDiasAlugados])
-    
+
     function dataDaReserva() {
         const dataMomentoReserva = moment().format('YYYY-MM-DD')
         setDataReserva(dataMomentoReserva)
         onCalcularData(dataReserva, qtdeDiasAlugados)
-
-        // console.log(dataReserva)
     }
     function onCalcularData(data, dias) {
-        console.log(dataReserva)
         const dataDaEntrega = moment(new Date(dataRetirada)).add(dias, 'days')
         const newDataEntrega = dataDaEntrega.format('YYYY-MM-DD')
         setDataEntrega(newDataEntrega)
-        // console.log(qtdeDiasAlugados)
     }
+
+    const [errmsg, setErrmsg] = useState('')
 
     async function editarAluguel(
         dataReserva,
@@ -92,12 +79,20 @@ export const FormEditarAluguel = ({idCarro, idAluguel}) => {
                     status: status,
                     idAluguel: idAluguel
                 })
-                console.log(response)
                 notifySucc()
 
             }
         } catch (error) {
-            console.log(error.response.data.mensagem)
+            setErrmsg(error.response.data.mensagem)
+            const notifyErr = () => toast.error(errmsg, {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
             notifyErr()
         }
     }
@@ -110,7 +105,7 @@ export const FormEditarAluguel = ({idCarro, idAluguel}) => {
                     <select
                         defaultValue={'DEFAULT'}
                         disabled
-                        >
+                    >
                         <option value="DEFAULT" selected>
                             {infoCar.modelo}
                         </option>

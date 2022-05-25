@@ -61,7 +61,6 @@ export const AdminPage = () => {
     useEffect(()=>{
         async function dataCar() {
             const response = await Api.get('carros')
-            console.log(response)
             setCars(response.data.response)
         }
         dataCar();
@@ -75,7 +74,7 @@ export const AdminPage = () => {
             //remove a consulta de acordo com o id
         })
             .catch((error) => {
-                console.log('deu errro aki', error);
+
                 notifyErr()
             })
     }

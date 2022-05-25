@@ -1,14 +1,16 @@
 import React from "react";
-import "./styles.css";
+import "./styles.js";
 import face from "../../assets/image/face.svg";
 import inst from "../../assets/image/inst.svg";
 import lin from "../../assets/image/lin.svg";
+import {StyledPagin} from './styles'
 
 import mulher from "../../assets/image/mulher.svg";
 import {NavbarInfo}  from "../../Components/NavbarInfo";
 
 export const InfoPage = () => {
   return (
+    <StyledPagin>
     <div id="container">
       <NavbarInfo />
       <div className="fundo">
@@ -112,5 +114,6 @@ export const InfoPage = () => {
         </footer>
       </div>
     </div>
+    </StyledPagin>
   );
 };

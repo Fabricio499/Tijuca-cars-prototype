@@ -19,8 +19,7 @@ export const Cliente = () => {
         async function buscarMeusAlugueis(){
             const meuID = localStorage.getItem('UserID')
             const meusAlugueisGet = await meuAluguel(meuID)
-            console.log(meusAlugueisGet)
-            setMeusAlugueis(meusAlugueisGet)
+            setMeusAlugueis(meusAlugueisGet.sort((a,b)=>{return a.statusAluguel - b.statusAluguel}))
         }
         buscarMeusAlugueis();
     }, [])
@@ -48,6 +47,8 @@ export const Cliente = () => {
     
     }, [])
 
+    
+
     return (
         <C.ContainerCliente>
             
@@ -71,6 +72,7 @@ export const Cliente = () => {
                         />
                     </Modal> 
                 </div>
+                
                 <div className='cards'>
                     {meusAlugueis.length > 0 ?
                         meusAlugueis.map((aluguel)=>(

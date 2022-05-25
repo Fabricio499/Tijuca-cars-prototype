@@ -34,14 +34,6 @@ export const CardCliente = ({
     function abriModal(){
         setOpenModal(true)
     }
-    
-    console.log(idAluguel,
-        idCarro,
-        dataReserva,
-        dataRetirada,
-        dataEntrega,
-        status,
-        valorAluguel)
 
     return (
         <C.CardContainer status={status}>
